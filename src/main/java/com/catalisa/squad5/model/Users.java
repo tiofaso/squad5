@@ -19,27 +19,30 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
+    private String name;
+
+    @Column(nullable = false, length = 100)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
+    private String email;
+
+    @Column(nullable = false, length = 72)
     private String password;
 
     @ManyToMany
-    @JoinTable(name = "TB_ROLES", joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_role"))
+    @JoinTable(name = "TB_USERS_ROLES", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Roles> roles;
-
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
     }
 
-
     public String getPassword() {
         return this.password;
     }
-
 
     @Override
     public int hashCode() {
