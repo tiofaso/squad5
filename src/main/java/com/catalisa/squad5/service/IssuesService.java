@@ -1,6 +1,6 @@
 package com.catalisa.squad5.service;
 
-import com.catalisa.squad5.exceptions.IssueNotFound;
+import com.catalisa.squad5.exceptions.IssueIdNotFound;
 import com.catalisa.squad5.model.Issues;
 import com.catalisa.squad5.repository.IssuesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,6 @@ public class IssuesService {
 
     public Issues getById(Long id) {
         return issuesRepository.findById(id)
-                .orElseThrow(() -> new IssueNotFound("Issue with ID: " + id + " not found."));
+                .orElseThrow(() -> new IssueIdNotFound("Issue with ID: " + id + " not found."));
     }
 }
