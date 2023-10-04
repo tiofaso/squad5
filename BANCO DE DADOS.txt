@@ -1,0 +1,21 @@
+BANCO DE DADOS
+TABELA USERS (tb_users):
+ 	id (long), 
+	username (char 100), 
+	password (char 72), 
+	email (char 100), 
+	name (char 255) 
+
+TABELA ROLE (tb_role): 
+	id_role (long FK), 
+	role (roleenum)
+
+TABELE ISSUES (tb_issues): 
+	id (long), 
+	url (char 255), 
+	name_company (char 255), 
+	description (text), 
+	task (char 1), 
+	date (date), 
+	time (time), 
+	manager (id_user FK)
