@@ -3,9 +3,11 @@ package com.catalisa.squad5.service;
 import com.catalisa.squad5.dtos.IssueDTO;
 import com.catalisa.squad5.exceptions.IssueIdNotFound;
 import com.catalisa.squad5.model.Issues;
+import com.catalisa.squad5.model.Users;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -16,6 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
@@ -71,6 +75,23 @@ class IssuesServiceTest {
         });
     }
 
+    @Test
+    public void testFindAll() {
+        List<Issues> issuesList = Arrays.asList(
+                new Issues(1L, "https://example.com", "Company A", "Description A", "A", LocalDate.now(), LocalTime.now(), new Users()),
+                new Issues(2L, "https://example.com", "Company B", "Description B", "B", LocalDate.now(), LocalTime.now(), new Users())
+        );
+
+        when(issuesRepository.findAll()).thenReturn(issuesList);
+
+        List<Issues> result = issuesService.findAll();
+
+        assertThat(result).hasSize(2);
+        assertThat(result.get(0).getNameCompany()).isEqualTo("Company A");
+        assertThat(result.get(1).getNameCompany()).isEqualTo("Company B");
+
+        verify(issuesRepository, times(1)).findAll();
+    }
     @Test
     public void testUpdateIssue() {
         Long id = 1L;

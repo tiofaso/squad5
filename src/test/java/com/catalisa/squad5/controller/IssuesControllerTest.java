@@ -26,13 +26,14 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -114,6 +115,23 @@ class IssuesControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
+    @Test
+    public void testFindAll() throws Exception {
+        List<Issues> issuesList = Arrays.asList(
+                new Issues(1L, "https://example.com", "Company A", "Description A", "A", LocalDate.now(), LocalTime.now(), new Users()),
+                new Issues(2L, "https://example.com", "Company B", "Description B", "B", LocalDate.now(), LocalTime.now(), new Users())
+        );
+
+        when(issuesService.findAll()).thenReturn(issuesList);
+
+        mockMvc.perform(get("/issues"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].nameCompany").value("Company A"))
+                .andExpect(jsonPath("$[1].nameCompany").value("Company B"));
+
+        // Verifique se o serviço foi chamado corretamente
+        verify(issuesService, times(1)).findAll();
+    }
 
     @Test
     public void testUpdateIssue() throws Exception {
