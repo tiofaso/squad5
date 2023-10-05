@@ -96,11 +96,11 @@ class IssuesServiceTest {
     public void testUpdateIssue() {
         Long id = 1L;
         IssuesDTO issuesDTO = new IssuesDTO();
-        issuesDTO.setUrl("https://example.com");
-        issuesDTO.setNameCompany("Example Company");
-        issuesDTO.setDescription("Description");
-        issuesDTO.setDate(LocalDate.now());
-        issuesDTO.setTime(LocalTime.now());
+        issuesDTO.setUrlDto("https://example.com");
+        issuesDTO.setNameCompanyDto("Example Company");
+        issuesDTO.setDescriptionDto("Description");
+        issuesDTO.setDateDto(LocalDate.now());
+        issuesDTO.setTimeDto(LocalTime.now());
 
         Issues existingIssue = new Issues();
         existingIssue.setId(id);
@@ -116,11 +116,11 @@ class IssuesServiceTest {
         Issues updatedIssue = issuesService.updateIssue(id, issuesDTO);
 
         // Verificar se os campos foram atualizados corretamente
-        assertEquals(issuesDTO.getUrl(), updatedIssue.getUrl());
-        assertEquals(issuesDTO.getNameCompany(), updatedIssue.getNameCompany());
-        assertEquals(issuesDTO.getDescription(), updatedIssue.getDescription());
-        assertEquals(issuesDTO.getDate(), updatedIssue.getDate());
-        assertEquals(issuesDTO.getTime(), updatedIssue.getTime());
+        assertEquals(issuesDTO.getUrlDto(), updatedIssue.getUrl());
+        assertEquals(issuesDTO.getNameCompanyDto(), updatedIssue.getNameCompany());
+        assertEquals(issuesDTO.getDescriptionDto(), updatedIssue.getDescription());
+        assertEquals(issuesDTO.getDateDto(), updatedIssue.getDate());
+        assertEquals(issuesDTO.getTimeDto(), updatedIssue.getTime());
     }
 
 }
