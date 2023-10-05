@@ -151,5 +151,6 @@ class IssuesControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(issueDTOList.size())));
+
     }
 }
