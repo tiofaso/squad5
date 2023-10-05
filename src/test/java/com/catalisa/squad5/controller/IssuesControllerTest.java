@@ -178,4 +178,5 @@ class IssuesControllerTest {
             throw new RuntimeException(e);
         }
     }
+ //
 }
