@@ -106,7 +106,11 @@
             <version>5.7.11</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>

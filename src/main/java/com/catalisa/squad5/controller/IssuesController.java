@@ -1,6 +1,7 @@
 package com.catalisa.squad5.controller;
-///todo
+
 import com.catalisa.squad5.dtos.IssueDTO;
+import com.catalisa.squad5.exceptions.IssueIdNotFound;
 import com.catalisa.squad5.model.Issues;
 import com.catalisa.squad5.service.IssuesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,12 @@ public class IssuesController {
     //Buscar falha por id
     @GetMapping(path = "{id}")
     public ResponseEntity<Issues> getByIdId(@PathVariable Long id) {
-        Issues issue = issuesService.getById(id);
-        return ResponseEntity.ok(issue);
+        try {
+            Issues issue = issuesService.getById(id);
+            return ResponseEntity.ok(issue);
+        } catch (IssueIdNotFound e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     //Atualizar Falha
