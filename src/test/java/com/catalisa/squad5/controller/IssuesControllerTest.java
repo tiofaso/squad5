@@ -17,6 +17,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import javax.persistence.EntityNotFoundException;
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -151,5 +153,28 @@ class IssuesControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(issueDTOList.size())));
+    }
+
+    @Test
+    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    public void testUpdateIssueWithEntityNotFoundException() throws Exception {
+        Long id = 1L;
+        IssueDTO issueDTO = new IssueDTO();
+
+        when(issuesService.updateIssue(id, issueDTO)).thenThrow(EntityNotFoundException.class);
+
+        mockMvc.perform(put("/issues/{id}", id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(issueDTO)))
+                .andExpect(status().isNotFound());
+    }
+
+    public static String asJsonString(final Object obj) {
+        try {
+            final ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
