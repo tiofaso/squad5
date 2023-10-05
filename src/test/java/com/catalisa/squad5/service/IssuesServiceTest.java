@@ -1,6 +1,6 @@
 package com.catalisa.squad5.service;
 
-import com.catalisa.squad5.dtos.IssueDTO;
+import com.catalisa.squad5.dtos.IssuesDTO;
 import com.catalisa.squad5.exceptions.IssueIdNotFound;
 import com.catalisa.squad5.model.Issues;
 import com.catalisa.squad5.model.Users;
@@ -95,12 +95,12 @@ class IssuesServiceTest {
     @Test
     public void testUpdateIssue() {
         Long id = 1L;
-        IssueDTO issueDTO = new IssueDTO();
-        issueDTO.setUrl("https://example.com");
-        issueDTO.setNameCompany("Example Company");
-        issueDTO.setDescription("Description");
-        issueDTO.setDate(LocalDate.now());
-        issueDTO.setTime(LocalTime.now());
+        IssuesDTO issuesDTO = new IssuesDTO();
+        issuesDTO.setUrl("https://example.com");
+        issuesDTO.setNameCompany("Example Company");
+        issuesDTO.setDescription("Description");
+        issuesDTO.setDate(LocalDate.now());
+        issuesDTO.setTime(LocalTime.now());
 
         Issues existingIssue = new Issues();
         existingIssue.setId(id);
@@ -113,14 +113,14 @@ class IssuesServiceTest {
         when(issuesRepository.findById(id)).thenReturn(Optional.of(existingIssue));
         when(issuesRepository.save(any(Issues.class))).thenReturn(existingIssue);
 
-        Issues updatedIssue = issuesService.updateIssue(id, issueDTO);
+        Issues updatedIssue = issuesService.updateIssue(id, issuesDTO);
 
         // Verificar se os campos foram atualizados corretamente
-        assertEquals(issueDTO.getUrl(), updatedIssue.getUrl());
-        assertEquals(issueDTO.getNameCompany(), updatedIssue.getNameCompany());
-        assertEquals(issueDTO.getDescription(), updatedIssue.getDescription());
-        assertEquals(issueDTO.getDate(), updatedIssue.getDate());
-        assertEquals(issueDTO.getTime(), updatedIssue.getTime());
+        assertEquals(issuesDTO.getUrl(), updatedIssue.getUrl());
+        assertEquals(issuesDTO.getNameCompany(), updatedIssue.getNameCompany());
+        assertEquals(issuesDTO.getDescription(), updatedIssue.getDescription());
+        assertEquals(issuesDTO.getDate(), updatedIssue.getDate());
+        assertEquals(issuesDTO.getTime(), updatedIssue.getTime());
     }
 
 }

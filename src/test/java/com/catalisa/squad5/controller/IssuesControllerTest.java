@@ -1,6 +1,6 @@
 package com.catalisa.squad5.controller;
 
-import com.catalisa.squad5.dtos.IssueDTO;
+import com.catalisa.squad5.dtos.IssuesDTO;
 import com.catalisa.squad5.exceptions.IssueIdNotFound;
 import com.catalisa.squad5.model.Issues;
 import com.catalisa.squad5.model.Users;
@@ -114,26 +114,26 @@ class IssuesControllerTest {
     @WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testUpdateIssue() throws Exception {
         Long id = 1L;
-        IssueDTO issueDTO = new IssueDTO();
-        issueDTO.setUrl("https://example.com");
-        issueDTO.setNameCompany("Example Company");
-        issueDTO.setDescription("Description");
-        issueDTO.setDate(LocalDate.now());
-        issueDTO.setTime(LocalTime.now());
+        IssuesDTO issuesDTO = new IssuesDTO();
+        issuesDTO.setUrl("https://example.com");
+        issuesDTO.setNameCompany("Example Company");
+        issuesDTO.setDescription("Description");
+        issuesDTO.setDate(LocalDate.now());
+        issuesDTO.setTime(LocalTime.now());
 
         Issues updatedIssue = new Issues();
         updatedIssue.setId(id);
-        updatedIssue.setUrl(issueDTO.getUrl());
-        updatedIssue.setNameCompany(issueDTO.getNameCompany());
-        updatedIssue.setDescription(issueDTO.getDescription());
-        updatedIssue.setDate(issueDTO.getDate());
-        updatedIssue.setTime(issueDTO.getTime());
+        updatedIssue.setUrl(issuesDTO.getUrl());
+        updatedIssue.setNameCompany(issuesDTO.getNameCompany());
+        updatedIssue.setDescription(issuesDTO.getDescription());
+        updatedIssue.setDate(issuesDTO.getDate());
+        updatedIssue.setTime(issuesDTO.getTime());
 
-        when(issuesService.updateIssue(id, issueDTO)).thenReturn(updatedIssue);
+        when(issuesService.updateIssue(id, issuesDTO)).thenReturn(updatedIssue);
 
         mockMvc.perform(put("/issues/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(issueDTO)))
+                        .content(objectMapper.writeValueAsString(issuesDTO)))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Issue atualizada com sucesso."));
     }
@@ -141,7 +141,7 @@ class IssuesControllerTest {
     @Test
     @WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testFindAll() throws Exception {
-        List<IssueDTO> issueDTOList = Arrays.asList(new IssueDTO(), new IssueDTO(), new IssueDTO());
+        List<IssuesDTO> issuesDTOList = Arrays.asList(new IssuesDTO(), new IssuesDTO(), new IssuesDTO());
 
         List<Issues> issueList = Arrays.asList(new Issues(), new Issues(), new Issues());
 
@@ -150,6 +150,6 @@ class IssuesControllerTest {
         mockMvc.perform(get("/issues")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(issueDTOList.size())));
+                .andExpect(jsonPath("$", hasSize(issuesDTOList.size())));
     }
 }
