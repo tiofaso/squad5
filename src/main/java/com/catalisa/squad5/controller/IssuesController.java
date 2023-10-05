@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,34 +21,56 @@ public class IssuesController {
 
     //Registra nova falha de acessibilidade
     @PostMapping
-    public ResponseEntity<Issues> registerIssue(@RequestBody Issues issues) {
-        Issues newIssue = issuesService.registerIssue(issues);
-        return new ResponseEntity<>(issues, HttpStatus.CREATED);
-    }
-
-    //Listar todas as falhas
-    @GetMapping
-    public List<Issues> findAll() {
-        return issuesService.findAll();
-    }
-
-    //Buscar falha por id
-    @GetMapping(path = "{id}")
-    public ResponseEntity<Issues> getByIdId(@PathVariable Long id) {
-        Issues issue = issuesService.getById(id);
-        return ResponseEntity.ok(issue);
-    }
-
-    //Atualizar Falha
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updateIssue(@PathVariable Long id, @RequestBody IssueDTO issueDTO) {
+    public ResponseEntity<Issues> registerIssue(@RequestBody @Valid Issues issues) {
         try {
-            Issues updatedIssue = issuesService.updateIssue(id, issueDTO);
-            return ResponseEntity.ok("Issue atualizada com sucesso.");
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
+            Issues newIssue = issuesService.registerIssue(issues);
+            return new ResponseEntity<>(newIssue, HttpStatus.CREATED);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar a Falha.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-}
+
+   /* @PostMapping
+    public ResponseEntity<Issues> registerIssue(@RequestBody @Valid IssueDTO issueDTO) {
+        Issues issues = new Issues();
+        issues.setUrl(issueDTO.getUrl());
+        issues.setNameCompany(issueDTO.getNameCompany());
+        issues.setDescription(issueDTO.getDescription());
+        issues.setDate(issueDTO.getDate());
+        issues.setTime(issueDTO.getTime());
+
+        try {
+            Issues newIssue = issuesService.registerIssue(issues);
+            return new ResponseEntity<>(newIssue, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }*/
+
+
+        //Listar todas as falhas
+        @GetMapping
+        public List<Issues> findAll () {
+            return issuesService.findAll();
+        }
+
+        //Buscar falha por id
+        @GetMapping(path = "{id}")
+        public ResponseEntity<Issues> getByIdId (@PathVariable Long id){
+            Issues issue = issuesService.getById(id);
+            return ResponseEntity.ok(issue);
+        }
+
+        //Atualizar Falha
+        @PutMapping("/{id}")
+        public ResponseEntity<String> updateIssue (@PathVariable Long id, @RequestBody IssueDTO issueDTO){
+            try {
+                Issues updatedIssue = issuesService.updateIssue(id, issueDTO);
+                return ResponseEntity.ok("Issue atualizada com sucesso.");
+            } catch (EntityNotFoundException e) {
+                return ResponseEntity.notFound().build();
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar a Falha.");
+            }
+        }
+    }
