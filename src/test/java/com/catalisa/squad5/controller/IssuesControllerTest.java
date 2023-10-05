@@ -1,6 +1,7 @@
 package com.catalisa.squad5.controller;
 
 import com.catalisa.squad5.dtos.IssueDTO;
+import com.catalisa.squad5.exceptions.IssueIdNotFound;
 import com.catalisa.squad5.model.Issues;
 import com.catalisa.squad5.model.Users;
 import com.catalisa.squad5.service.IssuesService;
@@ -101,10 +102,11 @@ class IssuesControllerTest {
 
     //busca falha por id inexistente
     @Test
-    public void testGetIssueByIdNotExists() throws Exception {
-        when(issuesService.getById(2L)).thenReturn(null);
+    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    public void testGetIssueByIdNotFound() throws Exception {
+        when(issuesService.getById(9999L)).thenThrow(IssueIdNotFound.class);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/issues/2"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/issues/9999"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
