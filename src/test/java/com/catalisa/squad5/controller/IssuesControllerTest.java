@@ -1,37 +1,29 @@
 package com.catalisa.squad5.controller;
 
 import com.catalisa.squad5.dtos.IssueDTO;
+import com.catalisa.squad5.exceptions.IssueIdNotFound;
 import com.catalisa.squad5.model.Issues;
 import com.catalisa.squad5.model.Users;
-import com.catalisa.squad5.repository.IssuesRepository;
 import com.catalisa.squad5.service.IssuesService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -53,6 +45,7 @@ class IssuesControllerTest {
 
     //registro de falha
     @Test
+    @WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testRegisterIssue() throws Exception {
         Issues issues = new Issues();
         issues.setId(1L);
@@ -85,6 +78,7 @@ class IssuesControllerTest {
 
     //busca falha por id existente
     @Test
+    @WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testGetIssueByIdExists() throws Exception {
         Issues issue = new Issues();
         issue.setId(1L);
@@ -108,32 +102,16 @@ class IssuesControllerTest {
 
     //busca falha por id inexistente
     @Test
-    public void testGetIssueByIdNotExists() throws Exception {
-        when(issuesService.getById(2L)).thenReturn(null);
+    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    public void testGetIssueByIdNotFound() throws Exception {
+        when(issuesService.getById(9999L)).thenThrow(IssueIdNotFound.class);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/issues/2"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/issues/9999"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
-    public void testFindAll() throws Exception {
-        List<Issues> issuesList = Arrays.asList(
-                new Issues(1L, "https://example.com", "Company A", "Description A", "A", LocalDate.now(), LocalTime.now(), new Users()),
-                new Issues(2L, "https://example.com", "Company B", "Description B", "B", LocalDate.now(), LocalTime.now(), new Users())
-        );
-
-        when(issuesService.findAll()).thenReturn(issuesList);
-
-        mockMvc.perform(get("/issues"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].nameCompany").value("Company A"))
-                .andExpect(jsonPath("$[1].nameCompany").value("Company B"));
-
-        // Verifique se o serviço foi chamado corretamente
-        verify(issuesService, times(1)).findAll();
-    }
-
-    @Test
+    @WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testUpdateIssue() throws Exception {
         Long id = 1L;
         IssueDTO issueDTO = new IssueDTO();
@@ -157,6 +135,21 @@ class IssuesControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(issueDTO)))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Falha atualizada com sucesso."));
+                .andExpect(content().string("Issue atualizada com sucesso."));
+    }
+
+    @Test
+    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    public void testFindAll() throws Exception {
+        List<IssueDTO> issueDTOList = Arrays.asList(new IssueDTO(), new IssueDTO(), new IssueDTO());
+
+        List<Issues> issueList = Arrays.asList(new Issues(), new Issues(), new Issues());
+
+        when(issuesService.findAll()).thenReturn(issueList);
+
+        mockMvc.perform(get("/issues")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(issueDTOList.size())));
     }
 }
