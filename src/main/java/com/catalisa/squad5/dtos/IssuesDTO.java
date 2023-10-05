@@ -10,11 +10,12 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class IssueDTO {
+public class IssuesDTO {
 
-    private String url;
-    private String nameCompany;
-    private String description;
-    private LocalDate date;
-    private LocalTime time;
+    private String urlDto;
+    private String nameCompanyDto;
+    private String descriptionDto;
+    private LocalDate dateDto;
+    private LocalTime timeDto;
+
 }
