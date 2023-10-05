@@ -167,6 +167,7 @@ class IssuesControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(issueDTO)))
                 .andExpect(status().isNotFound());
+
     }
 
     public static String asJsonString(final Object obj) {
