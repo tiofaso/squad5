@@ -17,10 +17,6 @@ public class IssuesService {
     @Autowired
     IssuesRepository issuesRepository;
 
-//    @Autowired
-//    Validator validator;
-//
-
     public Issues registerIssue(Issues updateIssues) {
 
         updateIssues.setDate(LocalDate.now());
