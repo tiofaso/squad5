@@ -153,6 +153,4 @@ class IssuesControllerTest {
                 .andExpect(jsonPath("$", hasSize(issueDTOList.size())));
 
     }
-
-    //Codigo novo
 }
