@@ -1,7 +1,6 @@
 package com.catalisa.squad5.controller;
 
 import com.catalisa.squad5.dtos.IssuesDTO;
-import com.catalisa.squad5.dtos.IssuesDTO;
 import com.catalisa.squad5.exceptions.IssueIdNotFound;
 import com.catalisa.squad5.model.Issues;
 import com.catalisa.squad5.model.Users;
@@ -18,17 +17,17 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 import javax.persistence.EntityNotFoundException;
-
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
