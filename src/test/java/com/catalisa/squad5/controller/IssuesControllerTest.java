@@ -49,16 +49,12 @@ class IssuesControllerTest {
     @WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testRegisterIssue() throws Exception {
         Issues issues = new Issues();
-        issues.setId(1L);
         issues.setUrl("http://example.com");
         issues.setNameCompany("Example Company");
         issues.setDescription("Issue description");
-        issues.setTask("Task details");
         issues.setDate(LocalDate.now());
         issues.setTime(LocalTime.now());
-        Users manager = new Users();
-        manager.setId(2L);
-        issues.setManager(manager);
+
 
         when(issuesService.registerIssue(Mockito.any(Issues.class)))
                 .thenReturn(issues);
@@ -67,13 +63,10 @@ class IssuesControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(issues)))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.url").value("http://example.com"))
-                .andExpect(jsonPath("$.nameCompany").value("Example Company"))
-                .andExpect(jsonPath("$.description").value("Issue description"))
-                .andExpect(jsonPath("$.task").value("Task details"));
+                .andExpect(jsonPath("$.urlDto").value("http://example.com"))
+                .andExpect(jsonPath("$.nameCompanyDto").value("Example Company"))
+                .andExpect(jsonPath("$.descriptionDto").value("Issue description"));
     }
-
 
     //registro de falhas com campo em branco ou nulo
 
