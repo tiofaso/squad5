@@ -37,3 +37,5 @@ build/
 mvnw
 mvnw.cmd
 data
+
+.fake
