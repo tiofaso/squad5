@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -40,10 +41,8 @@ class IssuesControllerTest {
     @MockBean
     private IssuesService issuesService;
 
-
     @Autowired
     private ObjectMapper objectMapper;
-
 
     //registro de falha
     @Test
@@ -80,7 +79,7 @@ class IssuesControllerTest {
 
     //busca falha por id existente
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testGetIssueByIdExists() throws Exception {
         Issues issue = new Issues();
         issue.setId(1L);
@@ -104,7 +103,7 @@ class IssuesControllerTest {
 
     //busca falha por id inexistente
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testGetIssueByIdNotFound() throws Exception {
         when(issuesService.getById(9999L)).thenThrow(IssueIdNotFound.class);
 
@@ -179,5 +178,5 @@ class IssuesControllerTest {
             throw new RuntimeException(e);
         }
     }
- //
+    //
 }
