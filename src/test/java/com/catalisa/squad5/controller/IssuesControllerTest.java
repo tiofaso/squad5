@@ -1,6 +1,7 @@
 package com.catalisa.squad5.controller;
 
 import com.catalisa.squad5.dtos.IssueDTO;
+import com.catalisa.squad5.dtos.IssuesDTO;
 import com.catalisa.squad5.exceptions.IssueIdNotFound;
 import com.catalisa.squad5.model.Issues;
 import com.catalisa.squad5.model.Users;
@@ -116,20 +117,20 @@ class IssuesControllerTest {
     @WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testUpdateIssue() throws Exception {
         Long id = 1L;
-        IssueDTO issueDTO = new IssueDTO();
-        issueDTO.setUrl("https://example.com");
-        issueDTO.setNameCompany("Example Company");
-        issueDTO.setDescription("Description");
-        issueDTO.setDate(LocalDate.now());
-        issueDTO.setTime(LocalTime.now());
+        IssuesDTO issueDTO = new IssuesDTO();
+        issueDTO.setUrlDto("https://example.com");
+        issueDTO.setNameCompanyDto("Example Company");
+        issueDTO.setDescriptionDto("Description");
+        issueDTO.setDateDto(LocalDate.now());
+        issueDTO.setTimeDto(LocalTime.now());
 
         Issues updatedIssue = new Issues();
         updatedIssue.setId(id);
-        updatedIssue.setUrl(issueDTO.getUrl());
-        updatedIssue.setNameCompany(issueDTO.getNameCompany());
-        updatedIssue.setDescription(issueDTO.getDescription());
-        updatedIssue.setDate(issueDTO.getDate());
-        updatedIssue.setTime(issueDTO.getTime());
+        updatedIssue.setUrl(issueDTO.getUrlDto());
+        updatedIssue.setNameCompany(issueDTO.getNameCompanyDto());
+        updatedIssue.setDescription(issueDTO.getDescriptionDto());
+        updatedIssue.setDate(issueDTO.getDateDto());
+        updatedIssue.setTime(issueDTO.getTimeDto());
 
         when(issuesService.updateIssue(id, issueDTO)).thenReturn(updatedIssue);
 
@@ -143,7 +144,7 @@ class IssuesControllerTest {
     @Test
     @WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testFindAll() throws Exception {
-        List<IssueDTO> issueDTOList = Arrays.asList(new IssueDTO(), new IssueDTO(), new IssueDTO());
+        List<IssuesDTO> issueDTOList = Arrays.asList(new IssuesDTO(), new IssuesDTO(), new IssuesDTO());
 
         List<Issues> issueList = Arrays.asList(new Issues(), new Issues(), new Issues());
 
@@ -160,7 +161,7 @@ class IssuesControllerTest {
     @WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testUpdateIssueWithEntityNotFoundException() throws Exception {
         Long id = 1L;
-        IssueDTO issueDTO = new IssueDTO();
+        IssuesDTO issueDTO = new IssuesDTO();
 
         when(issuesService.updateIssue(id, issueDTO)).thenThrow(EntityNotFoundException.class);
 
