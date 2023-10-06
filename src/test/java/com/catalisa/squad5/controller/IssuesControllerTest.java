@@ -113,7 +113,7 @@ class IssuesControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testUpdateIssue() throws Exception {
         Long id = 1L;
         IssuesDTO issueDTO = new IssuesDTO();
@@ -141,7 +141,7 @@ class IssuesControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testFindAll() throws Exception {
         List<IssuesDTO> issueDTOList = Arrays.asList(new IssuesDTO(), new IssuesDTO(), new IssuesDTO());
 
@@ -157,7 +157,7 @@ class IssuesControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testUpdateIssueWithEntityNotFoundException() throws Exception {
         Long id = 1L;
         IssuesDTO issueDTO = new IssuesDTO();
