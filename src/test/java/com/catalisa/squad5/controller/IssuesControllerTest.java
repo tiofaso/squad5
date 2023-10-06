@@ -1,6 +1,6 @@
 package com.catalisa.squad5.controller;
 
-import com.catalisa.squad5.dtos.IssueDTO;
+import com.catalisa.squad5.dtos.IssuesDTO;
 import com.catalisa.squad5.dtos.IssuesDTO;
 import com.catalisa.squad5.exceptions.IssueIdNotFound;
 import com.catalisa.squad5.model.Issues;
