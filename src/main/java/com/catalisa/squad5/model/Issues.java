@@ -36,7 +36,10 @@ public class Issues {
     private String description;
 
     @Column(name = "task", length = 1)
-    private String task;
+    private Integer task = 0 ; //0 = to-do, 1 = in progress, 2 = done
+
+    @Column(length = 255)
+    private String email_reporter;
 
     @Column(name = "date")
     private LocalDate date;
@@ -48,4 +51,3 @@ public class Issues {
     @JoinColumn(name = "manager")
     private Users manager;
 }
-

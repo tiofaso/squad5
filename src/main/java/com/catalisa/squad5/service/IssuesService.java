@@ -21,7 +21,7 @@ public class IssuesService {
 
         updateIssues.setDate(LocalDate.now());
         updateIssues.setTime(LocalTime.now());
-        updateIssues.setTask("0");
+        updateIssues.setTask(0);
 
         return issuesRepository.save(updateIssues);
     }

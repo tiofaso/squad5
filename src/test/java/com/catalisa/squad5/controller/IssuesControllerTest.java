@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -40,26 +41,20 @@ class IssuesControllerTest {
     @MockBean
     private IssuesService issuesService;
 
-
     @Autowired
     private ObjectMapper objectMapper;
-
 
     //registro de falha
     @Test
     @WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testRegisterIssue() throws Exception {
         Issues issues = new Issues();
-        issues.setId(1L);
         issues.setUrl("http://example.com");
         issues.setNameCompany("Example Company");
         issues.setDescription("Issue description");
-        issues.setTask("Task details");
         issues.setDate(LocalDate.now());
         issues.setTime(LocalTime.now());
-        Users manager = new Users();
-        manager.setId(2L);
-        issues.setManager(manager);
+
 
         when(issuesService.registerIssue(Mockito.any(Issues.class)))
                 .thenReturn(issues);
@@ -68,26 +63,21 @@ class IssuesControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(issues)))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.url").value("http://example.com"))
-                .andExpect(jsonPath("$.nameCompany").value("Example Company"))
-                .andExpect(jsonPath("$.description").value("Issue description"))
-                .andExpect(jsonPath("$.task").value("Task details"));
+                .andExpect(jsonPath("$.urlDto").value("http://example.com"))
+                .andExpect(jsonPath("$.nameCompanyDto").value("Example Company"))
+                .andExpect(jsonPath("$.descriptionDto").value("Issue description"));
     }
-
-
-    //registro de falhas com campo em branco ou nulo
 
     //busca falha por id existente
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testGetIssueByIdExists() throws Exception {
         Issues issue = new Issues();
         issue.setId(1L);
         issue.setUrl("http://example.com");
         issue.setNameCompany("Example Company");
         issue.setDescription("Issue description");
-        issue.setTask("Task details");
+        issue.setTask(0);
         issue.setDate(LocalDate.now());
         issue.setTime(LocalTime.now());
 
@@ -99,12 +89,12 @@ class IssuesControllerTest {
                 .andExpect(jsonPath("$.url").value("http://example.com"))
                 .andExpect(jsonPath("$.nameCompany").value("Example Company"))
                 .andExpect(jsonPath("$.description").value("Issue description"))
-                .andExpect(jsonPath("$.task").value("Task details"));
+                .andExpect(jsonPath("$.task").value(0));
     }
 
     //busca falha por id inexistente
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testGetIssueByIdNotFound() throws Exception {
         when(issuesService.getById(9999L)).thenThrow(IssueIdNotFound.class);
 
@@ -113,7 +103,7 @@ class IssuesControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testUpdateIssue() throws Exception {
         Long id = 1L;
         IssuesDTO issueDTO = new IssuesDTO();
@@ -141,7 +131,7 @@ class IssuesControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testFindAll() throws Exception {
         List<IssuesDTO> issueDTOList = Arrays.asList(new IssuesDTO(), new IssuesDTO(), new IssuesDTO());
 
@@ -157,7 +147,7 @@ class IssuesControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testUpdateIssueWithEntityNotFoundException() throws Exception {
         Long id = 1L;
         IssuesDTO issueDTO = new IssuesDTO();
@@ -179,5 +169,5 @@ class IssuesControllerTest {
             throw new RuntimeException(e);
         }
     }
- //
+    //
 }

@@ -1,9 +1,5 @@
-// Login
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const username = 'admin';
+    const password = '12345';
 
     // Base64 encode the credentials
     const credentials = `${username}:${password}`;
@@ -26,7 +22,6 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
             
             if (xhr.status === 200) {
                 // Handle successful login, for example, redirect to a new page
-                document.cookie="session=squad5"
                 console.log('Login successful!');
             } else if (xhr.status === 401) {
                 // Handle login failure
@@ -43,4 +38,3 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     });
 
     xhr.send(data);
-});

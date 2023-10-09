@@ -11,7 +11,7 @@
 	<groupId>com.catalisa</groupId>
 	<artifactId>squad5</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Squad 5 - sistema de reclame acessibilidade</name>
+	<name>Squad 5 - sistema de reclame aqui acessibilidade</name>
 	<description>Desafio final do catalisa 5</description>
 	<properties>
 		<java.version>11</java.version>
