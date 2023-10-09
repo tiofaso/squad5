@@ -77,7 +77,7 @@ class IssuesControllerTest {
         issue.setUrl("http://example.com");
         issue.setNameCompany("Example Company");
         issue.setDescription("Issue description");
-        issue.setTask("Task details");
+        issue.setTask(0);
         issue.setDate(LocalDate.now());
         issue.setTime(LocalTime.now());
 
@@ -89,7 +89,7 @@ class IssuesControllerTest {
                 .andExpect(jsonPath("$.url").value("http://example.com"))
                 .andExpect(jsonPath("$.nameCompany").value("Example Company"))
                 .andExpect(jsonPath("$.description").value("Issue description"))
-                .andExpect(jsonPath("$.task").value("Task details"));
+                .andExpect(jsonPath("$.task").value(0));
     }
 
     //busca falha por id inexistente

@@ -78,8 +78,8 @@ class IssuesServiceTest {
     @Test
     public void testFindAll() {
         List<Issues> issuesList = Arrays.asList(
-                new Issues(1L, "https://example.com", "Company A", "Description A", "A", "example@gmail.com", LocalDate.now(), LocalTime.now(), new Users()),
-                new Issues(2L, "https://example.com", "Company B", "Description B", "B", "example@gmail.com", LocalDate.now(), LocalTime.now(), new Users())
+                new Issues(1L, "https://example.com", "Company A", "Description A", 0, "example@gmail.com", LocalDate.now(), LocalTime.now(), new Users()),
+                new Issues(2L, "https://example.com", "Company B", "Description B", 0, "example@gmail.com", LocalDate.now(), LocalTime.now(), new Users())
         );
 
         when(issuesRepository.findAll()).thenReturn(issuesList);
