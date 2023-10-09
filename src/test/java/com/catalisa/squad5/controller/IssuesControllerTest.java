@@ -68,8 +68,6 @@ class IssuesControllerTest {
                 .andExpect(jsonPath("$.descriptionDto").value("Issue description"));
     }
 
-    //registro de falhas com campo em branco ou nulo
-
     //busca falha por id existente
     @Test
     @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})

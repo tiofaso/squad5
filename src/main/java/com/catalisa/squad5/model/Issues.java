@@ -38,9 +38,6 @@ public class Issues {
     @Column(name = "task", length = 1)
     private String task;
 
-    @Column(length = 255)
-    private String email_reporter;
-
     @Column(name = "date")
     private LocalDate date;
 
