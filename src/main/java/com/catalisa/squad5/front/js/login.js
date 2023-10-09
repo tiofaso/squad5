@@ -5,9 +5,6 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-console.log(username);
-console.log(password);
-
     // Base64 encode the credentials
     const credentials = `${username}:${password}`;
     const base64Credentials = btoa(credentials);
@@ -29,6 +26,7 @@ console.log(password);
             
             if (xhr.status === 200) {
                 // Handle successful login, for example, redirect to a new page
+                document.cookie="session=squad5"
                 console.log('Login successful!');
             } else if (xhr.status === 401) {
                 // Handle login failure
