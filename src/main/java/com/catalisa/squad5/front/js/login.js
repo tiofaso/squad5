@@ -5,6 +5,9 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
+console.log(username);
+console.log(password);
+
     // Base64 encode the credentials
     const credentials = `${username}:${password}`;
     const base64Credentials = btoa(credentials);
@@ -23,7 +26,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     xhr.onreadystatechange = function() {
         
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            console.log(xhr.status);
+            
             if (xhr.status === 200) {
                 // Handle successful login, for example, redirect to a new page
                 console.log('Login successful!');

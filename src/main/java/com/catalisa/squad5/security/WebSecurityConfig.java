@@ -13,7 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.httpBasic().and().authorizeHttpRequests()
+        http.cors().and().httpBasic().and().authorizeHttpRequests()
                 .anyRequest().authenticated().and().csrf().disable();
         return http.build();
     }
@@ -24,3 +24,4 @@ public class WebSecurityConfig {
     }
 
 }
+
