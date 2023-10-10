@@ -1,0 +1,50 @@
+/* Reset de estilos básicos */
+body, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo do cabeçalho */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Estilo do menu de navegação */
+nav ul {
+    list-style-type: none;
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+nav a {
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+/* Estilo do conteúdo principal */
+main {
+    padding: 20px;
+}
+
+section {
+    display: none;
+}
+
+/* Exibe a seção correspondente ao link clicado */
+:target {
+    display: block;
+}
