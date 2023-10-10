@@ -12,15 +12,15 @@
 </div>
 <div class="container">
   <h1>ACHOU UM SITE SEM ACESSIBILIDADE? INFORME AQUI!</h1>
-  <form action="http://localhost:8080/issues" method="post" id="issue-form">
+  <form  id="issue-form" onsubmit="reportIssue(event)">
     <div class="form-group">
       <label for="endereco-site">Endereço do site (obrigatório):</label>
-      <input type="text" id="endereco-site" name="endereco-site" required>
+      <input type="text" id="endereco-site" name="endereco-site">
     </div>
 
     <div class="form-group">
       <label for="nome-empresa">Nome da empresa dona do site (obrigatório):</label>
-      <input type="text" id="nome-empresa" name="nome-empresa" required>
+      <input type="text" id="nome-empresa" name="nome-empresa">
     </div>
 
     <div class="form-group">
@@ -30,13 +30,18 @@
 
     <div class="form-group right">
       <label for="descricao-problema">Descrição do problema (obrigatório):</label>
-      <textarea id="descricao-problema" name="descricao-problema" required></textarea>
+      <textarea id="descricao-problema" name="descricao-problema"></textarea>
     </div>
 
     <div class="form-group">
-      <input type="submit" value="Enviar">
+     <input type="submit" value="enviar">
     </div>
   </form>
 </div>
+<script src="../js/formulario.js"></script>
+<script>
+
+
+</script>
 </body>
 </html>
