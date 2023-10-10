@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Sistema de Reclame de Acessibilidade</title>
+
+    <style>
+        .col {
+            flex: 1;
+            min-width: 0;
+            margin: 0 10px; /* Margem entre as colunas */
+        }
+
+        .small-text {
+            font-size: 14px;
+        }
+
+        .card {
+            margin-bottom: 10px; /* Espaço entre os cards */
+        }
+
+        /* Estilo para To-Do */
+        .card-todo {
+            background-color: #fdd3d5; /* Vermelho claro */
+        }
+
+        /* Estilo para In Progress */
+        .card-in-progress {
+            background-color: #ffedd2; /* Amarelo claro */
+        }
+
+        /* Estilo para Done */
+        .card-done {
+            background-color: #a1e5d8; /* Verde claro */
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="kanbanPage" class="container mt-4">
+    <p class="display-2 text-center p-4">painel de falhas cadastradas</p>
+    <div class="d-flex justify-content-around">
+        <div class="col">
+            <div class="card card-todo"> <!-- Aplicando estilo para To-Do -->
+                <div class="card-header text-white" style="background-color: #fd5c63;">
+                    To-Do
+                </div>
+                <div class="card-body small-text" id="issuesToDo">
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-in-progress"> <!-- Aplicando estilo para In Progress -->
+                <div class="card-header" style="background-color: #ffbe2e;">
+                    In Progress
+                </div>
+                <div class="card-body small-text" id="issuesDoing">
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-done"> <!-- Aplicando estilo para Done -->
+                <div class="card-header text-white" style="background-color: #00b39c;">
+                    Done
+                </div>
+                <div class="card-body small-text" id="issuesDone">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/kanban.js"></script>
+</body>
+</html>
