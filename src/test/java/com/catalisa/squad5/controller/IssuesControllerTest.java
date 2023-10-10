@@ -13,7 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
+//import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -46,7 +46,7 @@ class IssuesControllerTest {
 
     //registro de falha
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = "USER")
+    //@WithMockUser(username = "admin", password = "12345", roles = "USER")
     public void testRegisterIssue() throws Exception {
         Issues issues = new Issues();
         issues.setUrl("http://example.com");
@@ -70,7 +70,7 @@ class IssuesControllerTest {
 
     //busca falha por id existente
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
+    //@WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testGetIssueByIdExists() throws Exception {
         Issues issue = new Issues();
         issue.setId(1L);
@@ -94,7 +94,7 @@ class IssuesControllerTest {
 
     //busca falha por id inexistente
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
+    //@WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testGetIssueByIdNotFound() throws Exception {
         when(issuesService.getById(9999L)).thenThrow(IssueIdNotFound.class);
 
@@ -103,7 +103,7 @@ class IssuesControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
+    //@WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testUpdateIssue() throws Exception {
         Long id = 1L;
         IssuesDTO issueDTO = new IssuesDTO();
@@ -131,7 +131,7 @@ class IssuesControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
+    //@WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testFindAll() throws Exception {
         List<IssuesDTO> issueDTOList = Arrays.asList(new IssuesDTO(), new IssuesDTO(), new IssuesDTO());
 
@@ -147,7 +147,7 @@ class IssuesControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
+    //@WithMockUser(username = "admin", password = "12345", roles = {"USER", "ADMIN"})
     public void testUpdateIssueWithEntityNotFoundException() throws Exception {
         Long id = 1L;
         IssuesDTO issueDTO = new IssuesDTO();
