@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/formulario.css">
+  <title>Document</title>
+</head>
+<body>
+<div class="header">
+  <a href="#" class="login-button">Login</a>
+</div>
+<div class="container">
+  <h1>ACHOU UM SITE SEM ACESSIBILIDADE? INFORME AQUI!</h1>
+  <form action="http://localhost:8080/issues" method="post" id="issue-form">
+    <div class="form-group">
+      <label for="endereco-site">Endereço do site (obrigatório):</label>
+      <input type="text" id="endereco-site" name="endereco-site" required>
+    </div>
+
+    <div class="form-group">
+      <label for="nome-empresa">Nome da empresa dona do site (obrigatório):</label>
+      <input type="text" id="nome-empresa" name="nome-empresa" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Digite o seu e-mail caso deseje receber atualizações sobre a falha cadastrada:</label>
+      <input type="email" id="email" name="email">
+    </div>
+
+    <div class="form-group right">
+      <label for="descricao-problema">Descrição do problema (obrigatório):</label>
+      <textarea id="descricao-problema" name="descricao-problema" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" value="Enviar">
+    </div>
+  </form>
+</div>
+</body>
+</html>
