@@ -55,14 +55,20 @@ function issuesContent(allIssues, type, page) {
     }else if(getPage() == 0){startingIndex = getIndex()-1;}
     else{startingIndex = getIndex();}
 
+    //For the first item only
+    if (startingIndex < 0) {
+        startingIndex = 0;
+        firstRecord = 0;
+    } 
+
     let issueData = "";
     
     // Iterate from the starting index for 5 iterations or until the end of the array
     for (let i = startingIndex; i <  startingIndex + 4; i++) {
        
         const values = allIssues[i];
-        
-        if (values.task === type) {
+
+        if (values && values.task !== undefined && values.task === type) {
         
                 issueData += `
                 <tr>
