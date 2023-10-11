@@ -15,18 +15,18 @@ xhr.onreadystatechange = function() {
             const allIssues = JSON.parse(xhr.responseText); //Getting all JSON content
 
             //To-do begin
-            issuesContent(allIssues,0);
+            issuesContent(allIssues,0,getPage());
             pagination(allIssues,0);
             //To-do end
             
             
             //Doing begin
-            issuesContent(allIssues,1);
+            issuesContent(allIssues,1,getPage());
             pagination(allIssues,1);
             //Doing end
             
             //Done begin
-            issuesContent(allIssues,2);
+            issuesContent(allIssues,2,getPage());
             pagination(allIssues,2);
             //Done end
 
@@ -37,10 +37,7 @@ xhr.onreadystatechange = function() {
     }
 };
 
-function issuesContent(allIssues, type) {
-    //Searching for the first record based upon type var
-    let firstRecord = -1;
-
+function issuesContent(allIssues, type, page) {
     for (let j = 0; j < allIssues.length; j++) {
         const record = allIssues[j];
     
@@ -50,13 +47,18 @@ function issuesContent(allIssues, type) {
         }
     }
 
-    const startingIndex = getIndex() + firstRecord;
+    let startingIndex = getIndex() + firstRecord;
+    
+    //Lock pagination 
+    if(type != getType()) {
+        startingIndex = firstRecord;
+    }else if(getPage() == 0){startingIndex = getIndex()-1;}
+    else{startingIndex = getIndex();}
 
     let issueData = "";
-    let cont = 0;
     
     // Iterate from the starting index for 5 iterations or until the end of the array
-    for (let i = startingIndex-1; i <  startingIndex + 5; i++) {
+    for (let i = startingIndex; i <  startingIndex + 4; i++) {
        
         const values = allIssues[i];
         
@@ -161,6 +163,11 @@ function getType() {
     return index;
 }
 
+function getPage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const index = parseInt(urlParams.get('pg')) || 0;
+    return index;
+}
 
 
 xhr.send();
