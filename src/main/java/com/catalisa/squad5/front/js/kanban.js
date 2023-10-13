@@ -26,6 +26,19 @@ xhr.onreadystatechange = function () {
 
 xhr.send(); // Envio da requisição GET
 
+// Ordena os cards por ID antes de chamar populateKanban
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.status === 200) {
+      issues = JSON.parse(xhr.responseText);
+      issues.sort((a, b) => a.id - b.id);
+      populateKanban(issues);
+    } else if (xhr.status === 401) {
+      document.getElementById("msg").style.display = "block";
+    }
+  }
+};
+
 // Função para popular o kanban com os cards
 function populateKanban(issues) {
   const issuesToDo = document.getElementById("issuesToDo");
@@ -62,13 +75,13 @@ function populateKanban(issues) {
         `;
 
     // Adiciona o card à coluna correspondente
-    if (values.task === 0 && todoCount < 3) {
+    if (values.task === 0 ) {
       issuesToDo.innerHTML += issueElement;
       todoCount++;
-    } else if (values.task === 1 && doingCount < 3) {
+    } else if (values.task === 1 ) {
       issuesDoing.innerHTML += issueElement;
       doingCount++;
-    } else if (values.task === 2 && doneCount < 3) {
+    } else if (values.task === 2 ) {
       issuesDone.innerHTML += issueElement;
       doneCount++;
     }
