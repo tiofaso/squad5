@@ -26,6 +26,19 @@ xhr.onreadystatechange = function () {
 
 xhr.send(); // Envio da requisição GET
 
+// Ordena os cards por ID antes de chamar populateKanban
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.status === 200) {
+      issues = JSON.parse(xhr.responseText);
+      issues.sort((a, b) => a.id - b.id);
+      populateKanban(issues);
+    } else if (xhr.status === 401) {
+      document.getElementById("msg").style.display = "block";
+    }
+  }
+};
+
 // Função para popular o kanban com os cards
 function populateKanban(issues) {
   const issuesToDo = document.getElementById("issuesToDo");
@@ -53,8 +66,7 @@ function populateKanban(issues) {
         <p class="card-text"><strong>Empresa:</strong> ${values.nameCompany}</p>
         <p class="card-text"><strong>Descrição:</strong> ${values.description}</p>
         <div class="btn-group" role="group">
-        <button class="btn btn-secondary" onclick="moveToInProgress(${values.id})">In Progress</button>
-        <button class="btn btn-secondary" onclick="moveToDone(${values.id})">Done</button>
+        ${getButtons(values.task, values.id)}
         </div>
         </div>
         </div>
@@ -62,42 +74,54 @@ function populateKanban(issues) {
         `;
 
     // Adiciona o card à coluna correspondente
-    if (values.task === 0 && todoCount < 3) {
+    if (values.task === 0 && todoCount < 5) {
       issuesToDo.innerHTML += issueElement;
       todoCount++;
-    } else if (values.task === 1 && doingCount < 3) {
+    } else if (values.task === 1) {
       issuesDoing.innerHTML += issueElement;
       doingCount++;
-    } else if (values.task === 2 && doneCount < 3) {
+    } else if (values.task === 2) {
       issuesDone.innerHTML += issueElement;
       doneCount++;
     }
   });
 }
 
+function getButtons(task, issueId) {
+  if (task === 0 ) {
+    return `<button class="btn btn-secondary" onclick="moveToInProgress(${issueId})">In Progress</button>`;
+  } else if (task === 1 ) {
+    return `<button class="btn btn-secondary" onclick="moveToDone(${issueId})">Done</button>`;
+  } else if (task === 2) {
+    return `<button class="btn btn-danger" onclick="deleteIssue(${issueId})">Delete</button>`;
+  }
+}
+
+// ...
+
 function changeTask(newTask, issueId) {
-  const xhrChangeTask = new XMLHttpRequest();
-  xhrChangeTask.open(
-    "PUT",
-    `http://localhost:8080/issues/task/${issueId}`,
-    true
-  ); // Alterada a rota para `/task/{id}`
-  xhrChangeTask.setRequestHeader("Content-Type", "application/json");
-  xhrChangeTask.setRequestHeader("Authorization", `Basic ${base64Credentials}`);
+    const xhrChangeTask = new XMLHttpRequest();
+    xhrChangeTask.open(
+        "PUT",
+        `http://localhost:8080/issues/task/${issueId}`,
+        true
+    );
+    xhrChangeTask.setRequestHeader("Content-Type", "application/json");
+    xhrChangeTask.setRequestHeader("Authorization", `Basic ${base64Credentials}`);
 
-  const body = JSON.stringify({ task: newTask }); // Corpo da requisição modificado
+    const body = JSON.stringify({ task: newTask });
 
-  xhrChangeTask.onreadystatechange = function () {
-    if (xhrChangeTask.readyState === XMLHttpRequest.DONE) {
-      if (xhrChangeTask.status === 200) {
-        console.log("Tarefa atualizada com sucesso.");
-      } else {
-        console.error("Erro ao atualizar tarefa:", xhrChangeTask.status);
-      }
-    }
-  };
+    xhrChangeTask.onreadystatechange = function () {
+        if (xhrChangeTask.readyState === XMLHttpRequest.DONE) {
+            if (xhrChangeTask.status === 200) {
+                console.log("Tarefa atualizada com sucesso.");
+            } else {
+                console.error("Erro ao atualizar tarefa:", xhrChangeTask.status);
+            }
+        }
+    };
 
-  xhrChangeTask.send(body);
+    xhrChangeTask.send(body);
 }
 
 function moveToInProgress(issueId) {
