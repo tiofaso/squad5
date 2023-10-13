@@ -18,10 +18,10 @@ function reportIssue(event){
             //------
 
             //Everything is fine and logged. Now do the magic!!!
-            const url = document.getElementById('endereco-site').value;
-            const nameCompany = document.getElementById('nome-empresa').value;
-            const email_reporter = document.getElementById('email').value;
-            const description = document.getElementById('descricao-problema').value;
+            const url = document.getElementById('url').value;
+            const nameCompany = document.getElementById('nameCompany').value;
+            const email_reporter = document.getElementById('email_reporter').value;
+            const description = document.getElementById('description').value;
 
             //Building the payload
             const payload = JSON.stringify({

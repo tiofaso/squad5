@@ -4,77 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="/css/story.css" rel="stylesheet">
 </head>
 <body>
-    <h2>A fazer</h2>
-    <table id="listToDo" style="border-style: solid;">
-        <tr>
-                <td>id</td>
-                <td>url</td>
-                <td>companhia</td>
-                <td>hora</td>
-                <td>data</td>
-                <td>task</td>
-            
-        </tr>
-
-        <tbody id="issuesToDo">
-        </tbody>
-
-    </table>
-    <table>
-        <tbody id="paginationToDo">
+    <div class="container mt-4">
+        <h2>A fazer</h2>
+        <table id="listToDo">
             <tr>
-
+                    <td>id</td>
+                    <td>url</td>
+                    <td>companhia</td>
+                    <td>hora</td>
+                    <td>data</td>
+                    <td>task</td>
+                
             </tr>
-        </tbody>
-    </table>
 
-    <h2>Em andamento</h2>
-    <table id="listDoing" style="border-style: solid;">
-        <tr>
-                <td>id</td>
-                <td>url</td>
-                <td>companhia</td>
-                <td>hora</td>
-                <td>data</td>
-                <td>task</td>
-            
-        </tr>
+            <tbody id="issuesToDo">
+            </tbody>
 
-        <tbody id="issuesDoing">
-        </tbody>
-    </table>
-    <table>
-        <tbody id="paginationDoing">
+        </table>
+        <table>
+            <tbody id="paginationToDo" class="pagination">
+                <tr>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container mt-4">
+        <h2>Em andamento</h2>
+        <table id="listDoing">
             <tr>
-
+                    <td>id</td>
+                    <td>url</td>
+                    <td>companhia</td>
+                    <td>hora</td>
+                    <td>data</td>
+                    <td>task</td>
+                
             </tr>
-        </tbody>
-    </table>
 
-    <h2>Feito</h2>
-    <table id="listDone" style="border-style: solid;">
-        <tr>
-                <td>id</td>
-                <td>url</td>
-                <td>companhia</td>
-                <td>hora</td>
-                <td>data</td>
-                <td>task</td>
-            
-        </tr>
+            <tbody id="issuesDoing">
+            </tbody>
+        </table>
+        <table>
+            <tbody id="paginationDoing" class="pagination">
+                <tr>
 
-        <tbody id="issuesDone">
-        </tbody>
-    </table>
-    <table>
-        <tbody id="paginationDone">
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container mt-4">
+        <h2>Feito</h2>
+        <table id="listDone">
             <tr>
-
+                    <td>id</td>
+                    <td>url</td>
+                    <td>companhia</td>
+                    <td>hora</td>
+                    <td>data</td>
+                    <td>task</td>
+                
             </tr>
-        </tbody>
-    </table>
+
+            <tbody id="issuesDone">
+            </tbody>
+        </table>
+        <table>
+            <tbody id="paginationDone" class="pagination">
+                <tr>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
 <script src="../js/list.js"></script>
 </body>
 </html>
