@@ -18,10 +18,12 @@ function reportIssue(event){
             //------
 
             //Everything is fine and logged. Now do the magic!!!
-            const url = document.getElementById('url').value;
+            let url = document.getElementById('url').value;
             const nameCompany = document.getElementById('nameCompany').value;
             const email_reporter = document.getElementById('email_reporter').value;
             const description = document.getElementById('description').value;
+
+            url = urlHaveHttp(url);
 
             //Building the payload
             const payload = JSON.stringify({
@@ -55,6 +57,20 @@ function reportIssue(event){
         }
     }
 };
+
+function urlHaveHttp(url) {
+  const regex = /^(https?:\/\/)/;
+
+  let urlFinal = "";
+
+  if (regex.test(url)) {
+    urlFinal = url;
+  } else {
+    urlFinal = "http://" + url
+  }
+  
+  return urlFinal; 
+}
 
 xhr.send();
 }
