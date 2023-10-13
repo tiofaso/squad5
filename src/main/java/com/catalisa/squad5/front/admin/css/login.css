@@ -1,4 +1,8 @@
-.div-center {
+body{
+    background-image: url("/src/main/java/com/catalisa/squad5/front/img/background-light.png");
+}
+
+/*.div-center {
     width: 400px;
     height: 200px;
     background-color: #ccc;
