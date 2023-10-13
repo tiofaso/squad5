@@ -28,7 +28,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
                 // Handle successful login, for example, redirect to a new page
                 document.cookie="session=squad5"
                 console.log('Login successful!');
-                //Redireciona para o painel
+                //Redireciona para o painel de falhas
                 window.location.href = "/src/main/java/com/catalisa/squad5/front/admin/html/kanban.html";
             } else if (xhr.status === 401) {
                 // Handle login failure
