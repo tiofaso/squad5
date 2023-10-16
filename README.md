@@ -43,7 +43,8 @@ Dentro do painel de administração, os administradores podem organizar as falha
     - GET para listar todas as falhas.
     - GET por ID.
     - PUT para atualizar falha por ID.
-    - Task para acompanhamento.
+    - PUT para atualizar falha por Task.
+  - Testes Unitários no Controller e no Service: Implementamos testes unitários rigorosos para garantir que os controladores e serviços funcionem corretamente. Esses testes ajudam a identificar e resolver problemas antes de serem implantados em produção, garantindo um código mais seguro e confiável.
 
 - **Frontend:** HTML, CSS5, JavaScript
 
