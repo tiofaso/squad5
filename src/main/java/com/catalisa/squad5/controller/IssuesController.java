@@ -24,20 +24,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 @CrossOrigin
 @RestController
 @RequestMapping("/issues")
 public class IssuesController {
 
-
     @Autowired
     IssuesService issuesService;
 
-
     @Autowired
     IssuesMapper issuesMapper;
-
 
     //Registra nova falha de acessibilidade
 //@PreAuthorize("permitAll()")
@@ -47,14 +43,12 @@ public class IssuesController {
         return new ResponseEntity<>(issuesMapper.toDto(issues), HttpStatus.CREATED);
     }
 
-
     //Listar todas as falhas
 //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public List<Issues> findAll() {
         return issuesService.findAll();
     }
-
 
     //Buscar falha por id
 //@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -67,7 +61,6 @@ public class IssuesController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-
 
     //Atualizar Falha
 //@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -83,15 +76,11 @@ public class IssuesController {
         }
     }
 
-
     @PutMapping("/task/{id}")
     public ResponseEntity<String> updateTask(@PathVariable Long id, @RequestBody Map<String, Integer> taskMap) {
         Integer newTask = taskMap.get("task");
-
-
-// Chama o serviço para atualizar a tarefa
+        // Chama o serviço para atualizar a tarefa
         Issues updatedIssue = issuesService.updateTask(id, newTask);
-
 
         if (updatedIssue != null) {
             return ResponseEntity.ok("Tarefa atualizada com sucesso.");
@@ -99,8 +88,4 @@ public class IssuesController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tarefa não encontrada com o ID: " + id);
         }
     }
-
-
-
-
 }

@@ -37,7 +37,7 @@ public class Issues {
     private String description;
 
     @Column(name = "task", length = 1)
-    private Integer task = 0 ; //0 = to-do, 1 = in progress, 2 = done
+    private Integer task = 0 ; //0 = to-do, 1 = in progress, 2 = done, 3 = delete from kanban
 
     @Column(length = 255)
     private String email_reporter;
