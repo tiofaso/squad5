@@ -77,10 +77,10 @@ function populateKanban(issues) {
     if (values.task === 0 && todoCount < 5) {
       issuesToDo.innerHTML += issueElement;
       todoCount++;
-    } else if (values.task === 1) {
+    } else if (values.task === 1 && todoCount < 5) {
       issuesDoing.innerHTML += issueElement;
       doingCount++;
-    } else if (values.task === 2) {
+    } else if (values.task === 2 && todoCount < 5) {
       issuesDone.innerHTML += issueElement;
       doneCount++;
     }
