@@ -56,5 +56,5 @@ Faz parte do grupo:
 
 ## Contribuindo
 
-Ficaríamos felizes em receber contribuições para melhorar o StackSpot Accessibility Issue Tracker. Sinta-se à vontade para enviar pull requests ou relatar problemas.
+Ficaríamos felizes em receber contribuições para melhorar o Inclusiwatcher. Sinta-se à vontade para enviar pull requests ou relatar problemas.
 
