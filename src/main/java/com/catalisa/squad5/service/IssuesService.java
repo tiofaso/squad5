@@ -41,7 +41,7 @@ public class IssuesService {
 
     public Issues updateIssue(Long id, IssuesDTO issuesDTO) {
         Issues existingIssue = issuesRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Issue não encontrada"));
+                .orElseThrow(() -> new EntityNotFoundException("Issue not found."));
 
         existingIssue.setUrl(issuesDTO.getUrlDto());
         existingIssue.setNameCompany(issuesDTO.getNameCompanyDto());
@@ -51,7 +51,6 @@ public class IssuesService {
 
         return issuesRepository.save(existingIssue);
     }
-
     public Issues updateTask(Long id, Integer newTask) {
         Optional<Issues> optionalIssue = issuesRepository.findById(id);
         Issues existingIssue = optionalIssue.orElseThrow(() -> new IssueIdNotFound("Issue with ID: " + id + " not found."));

@@ -77,27 +77,26 @@ function populateKanban(issues) {
     if (values.task === 0 && todoCount < 5) {
       issuesToDo.innerHTML += issueElement;
       todoCount++;
-    } else if (values.task === 1 && todoCount < 5) {
+    } else if (values.task === 1 && doingCount < 5) {
       issuesDoing.innerHTML += issueElement;
       doingCount++;
-    } else if (values.task === 2 && todoCount < 5) {
+    } else if (values.task === 2 && doneCount < 5) {
       issuesDone.innerHTML += issueElement;
       doneCount++;
     }
   });
 }
 
+
 function getButtons(task, issueId) {
-  if (task === 0 ) {
+  if (task === 0) {
     return `<button class="btn btn-secondary" onclick="moveToInProgress(${issueId})">In Progress</button>`;
-  } else if (task === 1 ) {
+  } else if (task === 1) {
     return `<button class="btn btn-secondary" onclick="moveToDone(${issueId})">Done</button>`;
   } else if (task === 2) {
     return `<button class="btn btn-danger" onclick="deleteIssue(${issueId})">Delete</button>`;
   }
 }
-
-// ...
 
 function changeTask(newTask, issueId) {
     const xhrChangeTask = new XMLHttpRequest();
@@ -126,8 +125,24 @@ function changeTask(newTask, issueId) {
 
 function moveToInProgress(issueId) {
   changeTask(1, issueId);
+  populateKanban(issues); // Atualizar o kanban
 }
 
 function moveToDone(issueId) {
   changeTask(2, issueId);
+  populateKanban(issues); // Atualizar o kanban
+}
+
+function deleteIssue(issueId) {
+  changeTask(2, issueId); // Mover para o estado "Done" (task 2)
+  const deletedIssue = issues.find(issue => issue.id === issueId);
+  const index = issues.indexOf(deletedIssue);
+  if (index !== -1) {
+    issues.splice(index, 1); // Remover do array de issues
+  }
+  populateKanban(issues); // Atualizar o kanban
+}
+
+function deleteFromDone(issueId) {
+  changeTask(3, issueId);
 }
