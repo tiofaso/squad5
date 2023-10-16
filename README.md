@@ -51,9 +51,9 @@ Dentro do painel de administração, os administradores podem organizar as falha
 ## Equipe:
 
 Faz parte do grupo:
-- Juliana
 - Fabio
-- Thais
+- Juliana
+- Thaís
 
 ## Contribuindo
 
