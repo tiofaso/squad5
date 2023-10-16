@@ -4,73 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Sistema de Reclame de Acessibilidade</title>
+    <link href="/src/main/java/com/catalisa/squad5/front/admin/css/kanban.css" rel="stylesheet">
+    <!--ALTERAR A COR-->
+     <link rel="icon" href="/src/main/java/com/catalisa/squad5/front/img/favicon.png" type="image/x-icon">
+    <title>Kanban</title>
 
     <style>
-        .col {
-            flex: 1;
-            min-width: 0;
-            margin: 0 10px; /* Margem entre as colunas */
-        }
-
-        .small-text {
-            font-size: 14px;
-        }
-
-        .card {
-            margin-bottom: 10px; /* Espaço entre os cards */
-        }
-
-        /* Estilo para To-Do */
-        .card-todo {
-            background-color: #fdd3d5; /* Vermelho claro */
-        }
-
-        /* Estilo para In Progress */
-        .card-in-progress {
-            background-color: #ffedd2; /* Amarelo claro */
-        }
-
-        /* Estilo para Done */
-        .card-done {
-            background-color: #a1e5d8; /* Verde claro */
-        }
-        
-
-        body {
-            background-image: url("/src/main/java/com/catalisa/squad5/front/img/background-light.png");
-        }
-
-        .selected {
-    background-color: #d8f3e3; /* Verde claro */
-}
+    
 
     </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-        <img src="/src/main/java/com/catalisa/squad5/front/img/logo2.png" width="250" height="80" class="d-inline-block align-top" alt="">
-    </a>
-    
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link selected" href="kanban.html">Painel de falhas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="story.html">Histórico</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/src/main/java/com/catalisa/squad5/front/admin/index.html">Sair</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-      
-     
+    <nav class="navbar navbar-expand-md navbar-light menu">
+        <a class="navbar-brand" href="#">
+            <img src="/src/main/java/com/catalisa/squad5/front/img/logoBranco.png" width="250" height="50" style="padding-left: 15px;" class="d-inline-block align-top" alt="">
+        </a>
+        
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link selected" href="kanban.html">Painel de falhas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="story.html">Histórico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/src/main/java/com/catalisa/squad5/front/admin/index.html">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>  
 
 <div id="kanbanPage" class="container mt-4">
     <!--<p class="display-2 text-center p-4">painel de falhas cadastradas</p> -->
@@ -106,7 +69,8 @@
         </div>
     </div>
 </div>
+<iframe src="./footer.html" frameborder="0" width="100%" height="150px"></iframe>
+</body>
 
 <script src="../js/kanban.js"></script>
-</body>
 </html>
