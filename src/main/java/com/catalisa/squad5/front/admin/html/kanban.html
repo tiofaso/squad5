@@ -35,15 +35,45 @@
         .card-done {
             background-color: #a1e5d8; /* Verde claro */
         }
+        
 
         body {
-            background-image: url("../img/background-light.png");
+            background-image: url("/src/main/java/com/catalisa/squad5/front/img/background-light.png");
         }
+
+        .selected {
+    background-color: #d8f3e3; /* Verde claro */
+}
+
     </style>
 </head>
 <body>
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="/src/main/java/com/catalisa/squad5/front/img/logo2.png" width="250" height="80" class="d-inline-block align-top" alt="">
+    </a>
+    
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link selected" href="kanban.html">Painel de falhas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="story.html">Histórico</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/src/main/java/com/catalisa/squad5/front/admin/index.html">Sair</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+      
+     
+
 <div id="kanbanPage" class="container mt-4">
-    <p class="display-2 text-center p-4">painel de falhas cadastradas</p>
+    <!--<p class="display-2 text-center p-4">painel de falhas cadastradas</p> -->
     <div class="d-flex justify-content-around">
         <div class="col">
             <div class="card card-todo"> <!-- Aplicando estilo para To-Do -->

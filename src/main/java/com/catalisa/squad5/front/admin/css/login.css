@@ -1,9 +1,17 @@
 body {
+
     background-image: url("/src/main/java/com/catalisa/squad5/front/img/background-light.png"); /* Sua imagem de fundo */
     background-size: cover; /* Garante que a imagem cubra todo o fundo */
 }
 
 
+.div-center {
+    
+    padding: 40px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+    
 /*.div-center {
     width: 400px;
     height: 200px;
