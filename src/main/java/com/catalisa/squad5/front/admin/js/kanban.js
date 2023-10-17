@@ -87,7 +87,6 @@ function populateKanban(issues) {
   });
 }
 
-
 function getButtons(task, issueId) {
   if (task === 0) {
     return `<button class="btn btn-secondary" onclick="moveToInProgress(${issueId})">In Progress</button>`;
@@ -99,38 +98,47 @@ function getButtons(task, issueId) {
 }
 
 function changeTask(newTask, issueId) {
-    const xhrChangeTask = new XMLHttpRequest();
-    xhrChangeTask.open(
-        "PUT",
-        `http://localhost:8080/issues/task/${issueId}`,
-        true
-    );
-    xhrChangeTask.setRequestHeader("Content-Type", "application/json");
-    xhrChangeTask.setRequestHeader("Authorization", `Basic ${base64Credentials}`);
+  const xhrChangeTask = new XMLHttpRequest();
+  xhrChangeTask.open(
+      "PUT",
+      `http://localhost:8080/issues/task/${issueId}`,
+      true
+  );
+  xhrChangeTask.setRequestHeader("Content-Type", "application/json");
+  xhrChangeTask.setRequestHeader("Authorization", `Basic ${base64Credentials}`);
 
-    const body = JSON.stringify({ task: newTask });
+  const body = JSON.stringify({ task: newTask });
 
-    xhrChangeTask.onreadystatechange = function () {
-        if (xhrChangeTask.readyState === XMLHttpRequest.DONE) {
-            if (xhrChangeTask.status === 200) {
-                console.log("Tarefa atualizada com sucesso.");
-            } else {
-                console.error("Erro ao atualizar tarefa:", xhrChangeTask.status);
-            }
-        }
-    };
+  xhrChangeTask.onreadystatechange = function () {
+      if (xhrChangeTask.readyState === XMLHttpRequest.DONE) {
+          if (xhrChangeTask.status === 200) {
+              console.log("Tarefa atualizada com sucesso no servidor.");
+              // Não precisamos fazer nada aqui, pois já atualizamos localmente
+          } else {
+              console.error("Erro ao atualizar tarefa no servidor:", xhrChangeTask.status);
+          }
+      }
+  };
 
-    xhrChangeTask.send(body);
+  xhrChangeTask.send(body);
 }
 
 function moveToInProgress(issueId) {
+  // Encontre a tarefa no array 'issues' pelo ID
+  const issue = issues.find(issue => issue.id === issueId);
+  // Atualize a task para 'In Progress' (task 1)
+  issue.task = 1;
+  // Atualize o kanban após mover para 'In Progress'
+  populateKanban(issues);
+  // Agora, envie a requisição para o servidor para atualizar a task
   changeTask(1, issueId);
-  populateKanban(issues); // Atualizar o kanban
 }
 
 function moveToDone(issueId) {
-  changeTask(2, issueId);
-  populateKanban(issues); // Atualizar o kanban
+  const issue = issues.find(issue => issue.id === issueId);
+  issue.task = 2;
+ populateKanban(issues);
+changeTask(2, issueId);
 }
 
 function deleteIssue(issueId) {
