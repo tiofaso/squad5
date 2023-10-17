@@ -3,7 +3,7 @@ package com.catalisa.squad5.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-///import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -32,14 +32,19 @@ public class Users {
     @Column(nullable = false, length = 72)
     private String password;
 
-//    @ManyToMany
-//    @JoinTable(name = "TB_USERS_ROLES", joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private List<Roles> roles;
+    @ManyToMany
+    @JoinTable(name = "TB_USERS_ROLES", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Roles> roles;
 
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return this.roles;
-//    }
+    public Users(String username, String password, Roles roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = (List<Roles>) roles;
+    }
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles;
+    }
 
     public String getPassword() {
         return this.password;

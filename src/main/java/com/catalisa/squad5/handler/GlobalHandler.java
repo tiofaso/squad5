@@ -1,4 +1,4 @@
-package com.catalisa.squad5.controller;
+package com.catalisa.squad5.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
