@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link href="/src/main/java/com/catalisa/squad5/front/admin/css/footer.css" rel="stylesheet">
+ 
   <link rel="stylesheet" href="./css/formulario.css">
    <!--ALTERAR A COR-->
-   <link rel="icon" href="/src/main/java/com/catalisa/squad5/front/img/favicon.png" type="image/x-icon">
+   <link rel="icon" href="/img/favicon.png" type="image/x-icon">
    <title>InclusiWatcher</title>
   <style>
    
@@ -16,7 +16,7 @@
 <body>
   <nav class="navbar navbar-expand-md navbar-light menu">
     <a class="navbar-brand" href="#">
-        <img src="/src/main/java/com/catalisa/squad5/front/img/logoBranco.png" width="250" height="50" style="padding-left: 15px;" class="d-inline-block align-top" alt="">
+        <img src="/img/logoBranco.png" width="250" height="50" style="padding-left: 15px;" class="d-inline-block align-top" alt="">
     </a>
     
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -35,7 +35,7 @@
         Você pode ajudar a tornar a web mais inclusiva informando sobre sites que não são acessíveis. 
         Preencha o formulário abaixo e compartilhe conosco os detalhes. Sua contribuição é valiosa!
     </p>
-    <form class="mt-4">
+    <form class="mt-4" id="issues" onsubmit="reportIssue(event)">
       <div class="form-group">
         <label for="url">Endereço do site <small class="text-muted">(campo obrigatório)</small>:</label>
         <input type="text" class="form-control" id="url" name="url">
@@ -55,12 +55,14 @@
         <label for="description">Descrição do problema <small class="text-muted">(campo obrigatório)</small>:</label>
         <textarea class="form-control" id="description" name="description" rows="6"></textarea>
       </div>
-        <div id="msgsucesso" style="display: none;">
-            Cadastro concluído com sucesso!
-        </div>
+        
         <div class="form-group">
         <input type="submit" class="btn btn-primary btn-block" value="Enviar">
+        <div id="msgsucesso" style="display: none; color: #00b39c;  padding: 40px;">
+          Cadastro concluído com sucesso!
       </div>
+      </div>
+    
     </form>
   </div>
   </div>
@@ -83,13 +85,13 @@
         <div class="col-md-4">
           <h5>Siga nas nossas redes sociais</h5>
           <p>
-            <img src="/src/main/java/com/catalisa/squad5/front/img/icones.png" alt="Icones referentes ao whatsapp, instagram e email da empresa." class="phone-icon">
+            <img src="/img/icones.png" alt="Icones referentes ao whatsapp, instagram e email da empresa." class="phone-icon">
           </p>
         </div>
         
   <!-- Terceira coluna -->
   <div class="col-md-4">
-    <img src="/src/main/java/com/catalisa/squad5/front/img/logoBranco.png" alt="Logo da empresa" class="logo">
+    <img src="/img/logoBranco.png" alt="Logo da empresa" class="logo">
     </p>
     <p>
       &copy; 2023 Feito por Juliana, Thais, Tio.Faso
