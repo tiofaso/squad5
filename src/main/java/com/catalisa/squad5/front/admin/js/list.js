@@ -38,33 +38,14 @@ xhr.onreadystatechange = function() {
 };
 
 function issuesContent(allIssues, type, page) {
-    for (let j = 0; j < allIssues.length; j++) {
-        const record = allIssues[j];
-    
-        if (record.task === type) {
-            firstRecord = j;
-            break;
-        }
-    }
-
-    let startingIndex = getIndex() + firstRecord;
-    
-    //Lock pagination 
-    if(type != getType()) {
-        startingIndex = firstRecord;
-    }else if(getPage() == 0){startingIndex = getIndex()-1;}
-    else{startingIndex = getIndex();}
-
     let issueData = "";
-    
-    // Iterate from the starting index for 5 iterations or until the end of the array
-    for (let i = startingIndex; i <  startingIndex + 4; i++) {
-       
-        const values = allIssues[i];
-        
-        if (values.task === type) {
-        
-                issueData += `
+
+    for (let j = 0; j < allIssues.length; j++) {
+        const values = allIssues[j];
+
+        // Se é a coluna "Done", mostramos tasks 2 e 3
+        if (type === 2 && (values.task === 2 || values.task === 3)) {
+            issueData += `
                 <tr>
                     <th scope="row">${values.id}</th>
                     <td>${values.url}</td>
@@ -73,8 +54,18 @@ function issuesContent(allIssues, type, page) {
                     <td>${values.date}</td>
                     <td>${values.task}</td>
                 </tr>
-                `;   
-                cont = 0;    
+            `;
+        } else if (values.task === type) {
+            issueData += `
+                <tr>
+                    <th scope="row">${values.id}</th>
+                    <td>${values.url}</td>
+                    <td>${values.nameCompany}</td>
+                    <td>${values.time}</td>
+                    <td>${values.date}</td>
+                    <td>${values.task}</td>
+                </tr>
+            `;
         }
     }
     

@@ -1,0 +1,67 @@
+.selected {
+    background-color: #fd5c63;
+}
+
+body {
+    background-image: url("/src/main/java/com/catalisa/squad5/front/img/background-light.png"); /* Sua imagem de fundo */
+    background-size: cover; /* Garante que a imagem cubra todo o fundo */
+    font-size: 14px;
+}
+
+tr:nth-child(even) {
+    background-color:  #fcedee;
+   }
+
+.card-header th {
+    background-color:  rgb(249, 241, 247);
+}
+
+.selected {
+    background-color: #fd5c63;  
+    border-radius: 5px;
+    color: #fff;
+    }
+    
+.menu{
+    background-color:   #00b39c;
+    }
+
+    /* Estilo para a paginação */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ccc;
+    margin: 0 4px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #fcedee;
+    border: 1px solid #fcedee;
+}
+
+.phone-icon {
+    width: 80px;  
+    height: auto;  
+}
+
+ footer {
+    margin: auto;  
+}
+
+.logo{
+    width: 300px;  
+     
+}
+
+ 
+
+ 

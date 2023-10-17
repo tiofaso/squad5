@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.URL;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -24,7 +25,7 @@ public class Issues {
     @Column(name = "url", length = 255)
     @NotBlank(message = "A URL não pode estar em branco")
     @NotNull(message = "A URL não pode estar vazia")
-    @URL(message = "URL inválida")
+    @URL(message = "URL inválida") ///todo validar url com e sem http
     private String url;
 
     @Column(name = "name_company", length = 255)
@@ -36,7 +37,7 @@ public class Issues {
     private String description;
 
     @Column(name = "task", length = 1)
-    private Integer task = 0 ; //0 = to-do, 1 = in progress, 2 = done
+    private Integer task = 0 ; //0 = to-do, 1 = in progress, 2 = done, 3 = delete from kanban
 
     @Column(length = 255)
     private String email_reporter;

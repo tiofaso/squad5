@@ -1,30 +1,20 @@
 body {
-
     background-image: url("/src/main/java/com/catalisa/squad5/front/img/background-light.png"); /* Sua imagem de fundo */
     background-size: cover; /* Garante que a imagem cubra todo o fundo */
 }
 
-.container-custom {
-    max-width: 800px; /* Largura máxima personalizada */
-    margin: 20px auto; /* Margem ao redor do conteúdo */
-}
-
-#form { 
+.div-center {
     padding: 40px;
     border: 1px solid #ccc;
     background-color: rgba(255, 255, 255, 0.8);
 }
-
-.menu{
-background-color:   #00b39c;
-}
-
+    
 .phone-icon {
     width: 80px;  
     height: auto;  
 }
 
-footer {
+ footer {
     margin: auto;  
 }
 

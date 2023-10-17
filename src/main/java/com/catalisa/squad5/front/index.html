@@ -1,26 +1,107 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Reclame de Acessibilidade</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ 
+  <link rel="stylesheet" href="./css/formulario.css">
+   <!--ALTERAR A COR-->
+   <link rel="icon" href="/img/favicon.png" type="image/x-icon">
+   <title>InclusiWatcher</title>
+  <style>
+   
+  </style>
 </head>
 <body>
-<div>
-    <h2>Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
+  <nav class="navbar navbar-expand-md navbar-light menu">
+    <a class="navbar-brand" href="#">
+        <img src="/img/logoBranco.png" width="250" height="50" style="padding-left: 15px;" class="d-inline-block align-top" alt="">
+    </a>
+    
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link " href="./admin/index.html">Login</a>
+            </li>            
+        </ul>
+    </div>
+</nav>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+  <div class="container mt-5 container-custom">
+    <div id="form">
+    <h1 class="text-center mb-4">Encontrou um site sem acessibilidade? Ajude-nos a melhorar!</h1>
+    <p class="lead text-center">
+        Você pode ajudar a tornar a web mais inclusiva informando sobre sites que não são acessíveis. 
+        Preencha o formulário abaixo e compartilhe conosco os detalhes. Sua contribuição é valiosa!
+    </p>
+    <form class="mt-4" id="issues" onsubmit="reportIssue(event)">
+      <div class="form-group">
+        <label for="url">Endereço do site <small class="text-muted">(campo obrigatório)</small>:</label>
+        <input type="text" class="form-control" id="url" name="url">
+      </div>
 
-        <button type="submit">Login</button>
+      <div class="form-group">
+        <label for="nameCompany">Nome da empresa dona do site <small class="text-muted">(campo obrigatório)</small>:</label>
+        <input type="text" class="form-control" id="nameCompany" name="nameCompany">
+      </div>
+
+      <div class="form-group">
+        <label for="email_reporter">Informe o seu e-mail caso deseje receber atualizações sobre a falha cadastrada:</label>
+        <input type="email" class="form-control" id="email_reporter" name="email_reporter">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Descrição do problema <small class="text-muted">(campo obrigatório)</small>:</label>
+        <textarea class="form-control" id="description" name="description" rows="6"></textarea>
+      </div>
+        
+        <div class="form-group">
+        <input type="submit" class="btn btn-primary btn-block" value="Enviar">
+        <div id="msgsucesso" style="display: none; color: #00b39c;  padding: 40px;">
+          Cadastro concluído com sucesso!
+      </div>
+      </div>
+    
     </form>
+  </div>
+  </div>
+
+  <footer class="footer mt-4" id="footer" style="background-color: #00b39c;  padding: 40px;">
+    <div class="container text-center">
+      <div class="row">
+        <!-- Primeira coluna -->
+        <div class="col-md-4">
+          <h5>Entre em contato</h5>
+          <p>
+            <i class="fas fa-phone"></i> (11) 9876-5432
+          </p>
+          <p>
+            Rua Pascoal Pais, 525, Brooklin, São Paulo - SP
+          </p>
+        </div>
+  
+        <!-- Segunda coluna -->
+        <div class="col-md-4">
+          <h5>Siga nas nossas redes sociais</h5>
+          <p>
+            <img src="/img/icones.png" alt="Icones referentes ao whatsapp, instagram e email da empresa." class="phone-icon">
+          </p>
+        </div>
+        
+  <!-- Terceira coluna -->
+  <div class="col-md-4">
+    <img src="/img/logoBranco.png" alt="Logo da empresa" class="logo">
+    </p>
+    <p>
+      &copy; 2023 Feito por Juliana, Thais, Tio.Faso
+    </p>
+  </div>
 </div>
-<div id="msg" style="display: none;">
-    Usuário ou senha inválidos! :(
 </div>
-<script src="js/login.js"></script>
+</footer>
+
+  <script src="js/form.js"></script>
 </body>
+
 </html>

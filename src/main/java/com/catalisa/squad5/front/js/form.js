@@ -18,10 +18,12 @@ function reportIssue(event){
             //------
 
             //Everything is fine and logged. Now do the magic!!!
-            const url = document.getElementById('endereco-site').value;
-            const nameCompany = document.getElementById('nome-empresa').value;
-            const email_reporter = document.getElementById('email').value;
-            const description = document.getElementById('descricao-problema').value;
+            let url = document.getElementById('url').value;
+            const nameCompany = document.getElementById('nameCompany').value;
+            const email_reporter = document.getElementById('email_reporter').value;
+            const description = document.getElementById('description').value;
+
+            url = urlHaveHttp(url);
 
             //Building the payload
             const payload = JSON.stringify({
@@ -45,7 +47,7 @@ function reportIssue(event){
             .then(response => response.json())
             .then(data => {
               console.log('Issue reported successfully:', data);
-              // Add any further actions you want to take after reporting the issue
+        document.getElementById('msgsucesso').style.display = 'block';
             })
             .catch(error => console.error('Error reporting the issue:', error));
             
@@ -55,6 +57,19 @@ function reportIssue(event){
         }
     }
 };
+
+function urlHaveHttp(url) {
+  const regex = /^(https?:\/\/)/;
+
+  let urlFinal = "";
+
+  if (regex.test(url)) {
+    urlFinal = url;
+  } else {
+    urlFinal = "http://" + url
+  }
+  return urlFinal; 
+}
 
 xhr.send();
 }
