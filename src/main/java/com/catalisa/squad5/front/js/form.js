@@ -68,7 +68,6 @@ function urlHaveHttp(url) {
   } else {
     urlFinal = "http://" + url
   }
-  
   return urlFinal; 
 }
 
