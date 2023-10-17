@@ -57,6 +57,7 @@ function reportIssue(event){
             document.getElementById('msg').style.display = 'block';
         }
     }
+
 };
 
 function urlHaveHttp(url) {
