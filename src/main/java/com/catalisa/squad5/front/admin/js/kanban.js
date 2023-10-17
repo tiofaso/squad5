@@ -62,9 +62,9 @@ function populateKanban(issues) {
         <div class="card">
         <div class="card-body">
         <h5 class="card-title">ID: ${values.id}</h5>
-        <p class="card-text"><strong>URL:</strong> ${values.url}</p>
-        <p class="card-text"><strong>Empresa:</strong> ${values.nameCompany}</p>
-        <p class="card-text"><strong>Descrição:</strong> ${values.description}</p>
+        <p class="card-text"><strong>URL:</strong> ${values.url} <br>
+        <strong>Empresa:</strong> ${values.nameCompany} <br>
+        <strong>Descrição:</strong> ${values.description} 
         <div class="btn-group" role="group">
         ${getButtons(values.task, values.id)}
         </div>
@@ -89,12 +89,13 @@ function populateKanban(issues) {
 
 function getButtons(task, issueId) {
   if (task === 0) {
-    return `<button class="btn btn-secondary" onclick="moveToInProgress(${issueId})">In Progress</button>`;
+    buttonHtml = `<button type="button" class="btn btn-outline-secondary btn-sm" onclick="moveToInProgress(${issueId})">Mover para In Progress</button>`;
   } else if (task === 1) {
-    return `<button class="btn btn-secondary" onclick="moveToDone(${issueId})">Done</button>`;
+    buttonHtml = `<button type="button" class="btn btn-outline-warning btn-sm" onclick="moveToDone(${issueId})">Mover para Done</button>`;
   } else if (task === 2) {
-    return `<button class="btn btn-danger" onclick="deleteIssue(${issueId})">Delete</button>`;
+    buttonHtml = `<button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteIssue(${issueId})">Deletar</button>`;
   }
+  return buttonHtml;
 }
 
 function changeTask(newTask, issueId) {
