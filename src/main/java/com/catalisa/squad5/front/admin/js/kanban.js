@@ -92,7 +92,7 @@ function getButtons(task, issueId) {
     buttonHtml = `<button type="button" class="btn btn-outline-secondary btn-sm" onclick="moveToInProgress(${issueId})">Mover para In Progress</button>`;
   } else if (task === 1) {
     buttonHtml = `<button type="button" class="btn btn-outline-warning btn-sm" onclick="moveToDone(${issueId})">Mover para Done</button>`;
-  } else if (task === 2) {
+  } else if (task === 2  || task === 3) {
     buttonHtml = `<button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteIssue(${issueId})">Deletar</button>`;
   }
   return buttonHtml;
@@ -143,15 +143,12 @@ changeTask(2, issueId);
 }
 
 function deleteIssue(issueId) {
-  changeTask(2, issueId); // Mover para o estado "Done" (task 2)
+  changeTask(3, issueId); // Mover para o estado "Done" (task 2)
   const deletedIssue = issues.find(issue => issue.id === issueId);
+
   const index = issues.indexOf(deletedIssue);
   if (index !== -1) {
     issues.splice(index, 1); // Remover do array de issues
   }
   populateKanban(issues); // Atualizar o kanban
-}
-
-function deleteFromDone(issueId) {
-  changeTask(3, issueId);
 }
