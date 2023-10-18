@@ -36,9 +36,10 @@ public class TokenService {
 
     public String validateToken(String token) {
         System.out.println("O token: " + token); ///Todo como é o token que está gerando
+        System.out.println("Chave secreta: "+ secretKey); ///Todo chave secreta
         try {
             Algorithm algorithm = Algorithm.HMAC256(secretKey);
-            return JWT.require(algorithm).withIssuer("squad").build().verify(token).getSubject();
+            return JWT.require(algorithm).withIssuer("squad5").build().verify(token).getSubject();
         }catch (JWTVerificationException exception){
             exception.printStackTrace();
             return "";
