@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/issues/auth")
 public class AuthenticationController {
 
     @Autowired
@@ -31,6 +31,7 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody AuthenticationDTO authenticationDTO) {
+
         var usernamePassword = new UsernamePasswordAuthenticationToken(authenticationDTO.getUsernameDto(),
                                                                     authenticationDTO.getPasswordDto());
 

@@ -9,6 +9,4 @@ import java.util.Optional;
 public interface UsersRepository extends JpaRepository<Users, Long> {
 
     UserDetails findByUsername(String username);
-
-//    UserDetails findByLogin(String username);
 }

@@ -21,9 +21,14 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors().and().httpBasic().and().authorizeHttpRequests()
+//        http.cors().and().httpBasic().and().authorizeHttpRequests()
+////                .anyRequest().authenticated().and().csrf().disable()
+////                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http.cors().and().authorizeHttpRequests()
                 .anyRequest().authenticated().and().csrf().disable()
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .oauth2ResourceServer().jwt();
         return http.build();
     }
 

@@ -35,6 +35,7 @@ public class TokenService {
     }
 
     public String validateToken(String token) {
+        System.out.println("O token: " + token); ///Todo como é o token que está gerando
         try {
             Algorithm algorithm = Algorithm.HMAC256(secretKey);
             return JWT.require(algorithm).withIssuer("squad").build().verify(token).getSubject();
@@ -47,4 +48,6 @@ public class TokenService {
     private Instant expiresTokenDate() {
         return LocalDateTime.now().plusHours(3).toInstant(ZoneOffset.of("-03:00"));
     }
+
+
 }
