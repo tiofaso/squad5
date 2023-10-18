@@ -11,26 +11,20 @@ xhr.setRequestHeader('Authorization', `Basic ${base64Credentials}`);
 xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
-            //------
             const allIssues = JSON.parse(xhr.responseText); //Getting all JSON content
 
             //To-do begin
             issuesContent(allIssues,0,getPage());
             pagination(allIssues,0);
-            //To-do end
-            
             
             //Doing begin
             issuesContent(allIssues,1,getPage());
             pagination(allIssues,1);
-            //Doing end
             
             //Done begin
             issuesContent(allIssues,2,getPage());
             pagination(allIssues,2);
-            //Done end
 
-            //------
         } else if (xhr.status === 401) {
             document.getElementById('msg').style.display = 'block';
         }
@@ -38,14 +32,39 @@ xhr.onreadystatechange = function() {
 };
 
 function issuesContent(allIssues, type, page) {
-    let issueData = "";
-
     for (let j = 0; j < allIssues.length; j++) {
-        const values = allIssues[j];
+        const record = allIssues[j];
+    
+        if (record.task === type) {
+            firstRecord = j;
+            break;
+        }
+    }
 
-        // Se é a coluna "Done", mostramos tasks 2 e 3
-        if (type === 2 && (values.task === 2 || values.task === 3)) {
-            issueData += `
+    let startingIndex = getIndex() + firstRecord;
+    
+    //Lock pagination 
+    if(type != getType()) {
+        startingIndex = firstRecord;
+    }else if(getPage() == 0){startingIndex = getIndex()-1;}
+    else{startingIndex = getIndex();}
+
+    //For the first item only
+    if (startingIndex < 0) {
+        startingIndex = 0;
+        firstRecord = 0;
+    } 
+
+    let issueData = "";
+    
+    // Iterate from the starting index for 5 iterations or until the end of the array
+    for (let i = startingIndex; i <  startingIndex + 4; i++) {
+       
+        const values = allIssues[i];
+
+        if (values && values.task !== undefined && values.task === type) {
+        
+                issueData += `
                 <tr>
                     <th scope="row">${values.id}</th>
                     <td>${values.url}</td>
@@ -54,18 +73,8 @@ function issuesContent(allIssues, type, page) {
                     <td>${values.date}</td>
                     <td>${values.task}</td>
                 </tr>
-            `;
-        } else if (values.task === type) {
-            issueData += `
-                <tr>
-                    <th scope="row">${values.id}</th>
-                    <td>${values.url}</td>
-                    <td>${values.nameCompany}</td>
-                    <td>${values.time}</td>
-                    <td>${values.date}</td>
-                    <td>${values.task}</td>
-                </tr>
-            `;
+                `;   
+                cont = 0;    
         }
     }
     
