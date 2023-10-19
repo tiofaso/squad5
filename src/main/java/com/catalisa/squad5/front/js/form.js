@@ -47,7 +47,7 @@ function reportIssue(event){
             .then(response => response.json())
             .then(data => {
               console.log('Issue reported successfully:', data);
-              // Add any further actions you want to take after reporting the issue
+        document.getElementById('msgsucesso').style.display = 'block';
             })
             .catch(error => console.error('Error reporting the issue:', error));
             
@@ -68,7 +68,6 @@ function urlHaveHttp(url) {
   } else {
     urlFinal = "http://" + url
   }
-  
   return urlFinal; 
 }
 

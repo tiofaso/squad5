@@ -11,17 +11,17 @@
 //@Configuration
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 //public class WebSecurityConfig {
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.cors().and().httpBasic().and().authorizeHttpRequests()
-//                .anyRequest().authenticated().and().csrf().disable();
-//        return http.build();
-//    }
+//   @Bean
+//   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//       http.cors().and().httpBasic().and().authorizeHttpRequests()
+//               .anyRequest().authenticated().and().csrf().disable();
+//       return http.build();
+//   }
 //
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+//   @Bean
+//   public PasswordEncoder passwordEncoder() {
+//       return new BCryptPasswordEncoder();
+//   }
 //
 //}
 //

@@ -1,0 +1,87 @@
+.col {
+    flex: 1;
+    min-width: 0;
+    margin: 0 10px; /* Margem entre as colunas */
+}
+
+body {
+  
+    background-image: url("/src/main/java/com/catalisa/squad5/front/img/background-light.png");
+    background-size: cover;
+}
+
+.card {
+    margin-bottom: 10px; /* Espaço entre os cards */
+    min-height: 230px; /* Tamanho mínimo em pixels */
+    font-size: 14px;
+}
+
+/* Estilo para To-Do */
+.card-todo {
+    background-color: #fdd3d5; /* Vermelho claro */
+}
+
+/* Estilo para In Progress */
+.card-in-progress {
+    background-color: #ffedd2; /* Amarelo claro */
+}
+
+/* Estilo para Done */
+.card-done {
+    background-color: #a1e5d8; /* Verde claro */
+}
+
+/* Estilo para To-Do */
+.todo-header {
+    background-color:  #fd5c63; /* Vermelho escuro*/
+    color: #fff;
+    font-size: 20px;
+}
+
+/* Estilo para In Progress */
+.in-progress-header {
+    background-color: #ffbe2e;; /* Amarelo escuro*/
+    color: #fff;
+    font-size: 20px;
+}
+
+/* Estilo para Done */
+.done-header {
+    background-color:#00b39c; /* Verde escuro*/
+    color: #fff;
+    font-size: 20px;
+}
+
+.selected {
+    background-color: #fd5c63;  
+    border-radius: 5px;
+    color: #fff;
+}
+
+.menu {
+    background-color:   #00b39c;
+}
+
+.card .btn-group {
+    float: right;
+}
+
+.card-title {
+    color: #4d4d4d;
+    text-align: right;
+    font-size: 14px;
+}
+
+.phone-icon {
+    width: 80px;  
+    height: auto;  
+}
+
+ footer {
+    margin: auto;  
+}
+
+.logo{
+    width: 300px;  
+     
+}

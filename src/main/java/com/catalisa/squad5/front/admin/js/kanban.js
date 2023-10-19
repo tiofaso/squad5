@@ -62,9 +62,9 @@ function populateKanban(issues) {
         <div class="card">
         <div class="card-body">
         <h5 class="card-title">ID: ${values.id}</h5>
-        <p class="card-text"><strong>URL:</strong> ${values.url}</p>
-        <p class="card-text"><strong>Empresa:</strong> ${values.nameCompany}</p>
-        <p class="card-text"><strong>Descrição:</strong> ${values.description}</p>
+        <p class="card-text"><strong>URL:</strong> ${values.url} <br>
+        <strong>Empresa:</strong> ${values.nameCompany} <br>
+        <strong>Descrição:</strong> ${values.description} 
         <div class="btn-group" role="group">
         ${getButtons(values.task, values.id)}
         </div>
@@ -87,62 +87,68 @@ function populateKanban(issues) {
   });
 }
 
-
 function getButtons(task, issueId) {
   if (task === 0) {
-    return `<button class="btn btn-secondary" onclick="moveToInProgress(${issueId})">In Progress</button>`;
+    buttonHtml = `<button type="button" class="btn btn-outline-secondary btn-sm" onclick="moveToInProgress(${issueId})">Mover para In Progress</button>`;
   } else if (task === 1) {
-    return `<button class="btn btn-secondary" onclick="moveToDone(${issueId})">Done</button>`;
-  } else if (task === 2) {
-    return `<button class="btn btn-danger" onclick="deleteIssue(${issueId})">Delete</button>`;
+    buttonHtml = `<button type="button" class="btn btn-outline-warning btn-sm" onclick="moveToDone(${issueId})">Mover para Done</button>`;
+  } else if (task === 2  || task === 3) {
+    buttonHtml = `<button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteIssue(${issueId})">Deletar</button>`;
   }
+  return buttonHtml;
 }
 
 function changeTask(newTask, issueId) {
-    const xhrChangeTask = new XMLHttpRequest();
-    xhrChangeTask.open(
-        "PUT",
-        `http://localhost:8080/issues/task/${issueId}`,
-        true
-    );
-    xhrChangeTask.setRequestHeader("Content-Type", "application/json");
-    xhrChangeTask.setRequestHeader("Authorization", `Basic ${base64Credentials}`);
+  const xhrChangeTask = new XMLHttpRequest();
+  xhrChangeTask.open(
+      "PUT",
+      `http://localhost:8080/issues/task/${issueId}`,
+      true
+  );
+  xhrChangeTask.setRequestHeader("Content-Type", "application/json");
+  xhrChangeTask.setRequestHeader("Authorization", `Basic ${base64Credentials}`);
 
-    const body = JSON.stringify({ task: newTask });
+  const body = JSON.stringify({ task: newTask });
 
-    xhrChangeTask.onreadystatechange = function () {
-        if (xhrChangeTask.readyState === XMLHttpRequest.DONE) {
-            if (xhrChangeTask.status === 200) {
-                console.log("Tarefa atualizada com sucesso.");
-            } else {
-                console.error("Erro ao atualizar tarefa:", xhrChangeTask.status);
-            }
-        }
-    };
+  xhrChangeTask.onreadystatechange = function () {
+      if (xhrChangeTask.readyState === XMLHttpRequest.DONE) {
+          if (xhrChangeTask.status === 200) {
+              console.log("Tarefa atualizada com sucesso no servidor.");
+              // Não precisamos fazer nada aqui, pois já atualizamos localmente
+          } else {
+              console.error("Erro ao atualizar tarefa no servidor:", xhrChangeTask.status);
+          }
+      }
+  };
 
-    xhrChangeTask.send(body);
+  xhrChangeTask.send(body);
 }
 
 function moveToInProgress(issueId) {
+  // Encontre a tarefa no array 'issues' pelo ID
+  const issue = issues.find(issue => issue.id === issueId);
+  // Atualize a task para 'In Progress' (task 1)
+  issue.task = 1;
+  // Atualize o kanban após mover para 'In Progress'
+  populateKanban(issues);
+  // Agora, envie a requisição para o servidor para atualizar a task
   changeTask(1, issueId);
-  populateKanban(issues); // Atualizar o kanban
 }
 
 function moveToDone(issueId) {
-  changeTask(2, issueId);
-  populateKanban(issues); // Atualizar o kanban
+  const issue = issues.find(issue => issue.id === issueId);
+  issue.task = 2;
+ populateKanban(issues);
+changeTask(2, issueId);
 }
 
 function deleteIssue(issueId) {
-  changeTask(2, issueId); // Mover para o estado "Done" (task 2)
+  changeTask(3, issueId); // Mover para o estado "Done" (task 2)
   const deletedIssue = issues.find(issue => issue.id === issueId);
+
   const index = issues.indexOf(deletedIssue);
   if (index !== -1) {
     issues.splice(index, 1); // Remover do array de issues
   }
   populateKanban(issues); // Atualizar o kanban
-}
-
-function deleteFromDone(issueId) {
-  changeTask(3, issueId);
 }
