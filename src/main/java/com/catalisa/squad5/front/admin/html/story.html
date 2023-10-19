@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,14 +28,15 @@
             </ul>
         </div>
     </nav>
+
     
     <div class="container mt-4">
         <div class="card" style="background-color: #fdd3d5;">
             <h2 class="card-header text-white" style="background-color: #fd5c63;">
-                A fazer
+                A fazer<a id="0"></a>
             </h2>
-            <div class="card-body">
-                <table class="table">
+            <div class="card-body"  id="ToDo">
+                <table>
                     <thead class="card-header">  
                         <tr>
                             <th>ID</th>
@@ -46,7 +47,7 @@
                             <th>STATUS</th>
                         </tr>
                     </thead>
-                    <tbody id="issuesToDo" >
+                    <tbody id="issuesToDo">
                     </tbody>
                 </table>
                 <table>
@@ -58,14 +59,14 @@
             </div>
         </div>
     </div>
-
+    
     <div class="container mt-4">
         <div class="card" style="background-color: #ffedd2;">
             <h2 class="card-header text-white" style="background-color: #ffbe2e;">
-                Em andamento
+                Em andamento<a id="1"></a>
             </h2>
-            <div class="card-body">
-                <table class="table">
+            <div class="card-body" id="Doing">
+                <table>
                     <thead class="card-header">  
                         <tr>
                             <th>ID</th>
@@ -89,13 +90,14 @@
         </div>
     </div>
 
+    
     <div class="container mt-4">
         <div class="card" style="background-color: #a1e5d8;">
             <h2 class="card-header text-white" style="background-color: #00b39c;">
-                Feito
+                Feito<a id="2"></a>
             </h2>
-            <div class="card-body">
-                <table class="table">
+            <div class="card-body"  id="Done">
+                <table>
                     <thead class="card-header">  
                         <tr>
                             <th>ID</th>
@@ -154,4 +156,3 @@
       <script src="../js/list.js"></script>
 </body>
 </html>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>

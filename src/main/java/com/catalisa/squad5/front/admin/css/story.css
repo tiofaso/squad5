@@ -8,14 +8,51 @@ body {
     font-size: 14px;
 }
 
-tr:nth-child(even) {
-    background-color:  #fcedee;
-   }
+#ToDo table {
+    width: 100%;
+    padding:15px;
+}
 
-.card-header th {
+
+#ToDo tr:nth-child(even) {
+    background-color:  #fcedee;
+   
+}
+
+#ToDo .card-header th {
     background-color:  rgb(249, 241, 247);
 }
 
+#Doing table {
+    width: 100%;
+    padding:15px;
+}
+
+#Doing tr:nth-child(even) {
+    background-color:  #fff8b1;
+}
+
+#Doing .card-header th {
+    background-color:  rgb(245, 227, 133);
+}
+
+#Done table {
+    width: 100%;
+    padding:15px;
+}
+
+#Done tr:nth-child(even) {
+    background-color:  #ccfff5;
+}
+
+#Done .card-header th {
+    background-color:  #94c6bc;
+}
+
+.pagination{
+    
+    float: left;
+}
 .selected {
     background-color: #fd5c63;  
     border-radius: 5px;
