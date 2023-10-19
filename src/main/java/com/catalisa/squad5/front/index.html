@@ -33,7 +33,7 @@
             Você pode ajudar a tornar a web mais inclusiva informando sobre sites que não são acessíveis.
             Preencha o formulário abaixo e compartilhe conosco os detalhes. Sua contribuição é valiosa!
         </p>
-        <form class="mt-4">
+        <form class="mt-4" onsubmit="reportIssue(event)">
             <div class="form-group">
                 <label for="url">Endereço do site <small class="text-muted">(campo obrigatório)</small>:</label>
                 <input type="text" class="form-control" id="url" name="url">
@@ -56,11 +56,12 @@
                     obrigatório)</small>:</label>
                 <textarea class="form-control" id="description" name="description" rows="6"></textarea>
             </div>
-            <div id="msgsucesso" style="display: none;">
-                Cadastro concluído com sucesso!
-            </div>
+
             <div class="form-group">
                 <input type="submit" class="btn btn-primary btn-block" value="Enviar">
+            </div>
+            <div id="msgsucesso" style="display: none; color: #00b39c;">
+                Cadastro concluído com sucesso!
             </div>
         </form>
     </div>
