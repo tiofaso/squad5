@@ -12,7 +12,7 @@ body {
 
 .card {
     margin-bottom: 10px; /* Espaço entre os cards */
-    min-height: 230px; /* Tamanho mínimo em pixels */
+    min-height: 320px; /* Tamanho mínimo em pixels */
     font-size: 14px;
 }
 

@@ -71,11 +71,6 @@ function issuesContent(allIssues, type, page) {
     
     let tableHtml = createTableFromInfo(filteredInfo,inicialTable);
 
-    
-    
-    //console.log(tableHtml);
-    //console.log(filteredInfoArray.length);
-    //Getting the size of string
     const sizeDb = allIssues.length;
 
     //Var for the HTML data
@@ -97,60 +92,19 @@ function issuesContent(allIssues, type, page) {
     let jInit = firstMatchingIssue.id;
 
 
-    for(let j = jInit; j < sizeDb; j++) {
-        const newIssues = allIssues[j];
-        // console.log("j: ",j);
-        //Showing only five itens
-        if(newIssues.task === type && contItens < 5){
-            // console.log("jota ", j, " ", newIssues.id, newIssues.url);
-            // console.log("Cont itens ", contItens);
-            // console.log("");   
-
-            //Making html
-            if ( newIssues.task === type) {
-        
-                    let statusRow = ""; //Store human friendly status
-                    switch(newIssues.task) {
-                        case 0:
-                            statusRow = "a fazer";
-                            break;
-                        case 1:
-                            statusRow = "em andamento";
-                            break;
-                        default:
-                            statusRow = "feito";
-                    }
-
-                            issueData += `
-                            <tr>
-                                <th scope="row" style="width:3%;">${newIssues.id}</th>
-                                <td style="width:50%;">${newIssues.url}</td>
-                                <td style="width:17%;">${newIssues.nameCompany}</td>
-                                <td style="width:7%;">${newIssues.time}</td>
-                                <td style="width:13%;">${newIssues.date}</td>
-                                <td style="width:10%;">${statusRow}</td>
-                            </tr>
-                            `;   
-  
-           }
-
-            if(contItens == 5) { contItens = 0;}
-            else {contItens++;}
-        
-        }
-    }
+    
     
     //Selecting what type of story to show
     switch(type) {
         case 1:
             
-            document.getElementById("issuesDoing").innerHTML = tableHtml;//issueData;
+            document.getElementById("issuesDoing").innerHTML = tableHtml;
             break;
         case 2:
-            document.getElementById("issuesDone").innerHTML = tableHtml;//issueData;
+            document.getElementById("issuesDone").innerHTML = tableHtml;
             break;
         default:
-            document.getElementById("issuesToDo").innerHTML = tableHtml;//issueData;
+            document.getElementById("issuesToDo").innerHTML = tableHtml;
     }
     
 }
@@ -178,9 +132,6 @@ function pagination(jsonData,type) {
     //Adding an extra page for extra elements
     if((totalPages * 5) < maxElements) {totalPages++;}
     
-    // console.log("Max elements",maxElements);
-    // console.log("Total pages ", totalPages);
-    // console.log("");
     //Getting the index elements for each page
     contPages = 0;
     let contIndex = 0;
@@ -197,11 +148,7 @@ function pagination(jsonData,type) {
 
     //Making pagination
     let pagesLinks ='';
-    // for(let i = 1; i <= totalPages; i++) {
-    //     pagesLinks += `
-    //         <th scope="row"><a href="story.html?&pg=${i}&index=${pagesIndex[i]}&type=${type}#${type}">${i}</a></td>`;
-        
-    // }
+
     for(let i = 1; i <= totalPages; i++) {
         pagesLinks += `
             <th scope="row"><a href="story.html?&pg=${i}&type=${type}#${type}" id="${type}">${i}</a></td>`;
@@ -256,14 +203,6 @@ function filterAndStoreIssues(allIssues, type) {
         
     }
 
-    //console.log(filteredIssuesArray)
-    // Sort the array based on the 'ID' in ascending order
-    // filteredIssuesArray.sort((a, b) => {
-    //     const idA = parseInt(a.match(/\d+/)[0]);
-    //     const idB = parseInt(b.match(/\d+/)[0]);
-    //     return idA - idB;
-    // });
-
     return filteredIssuesArray.join('\n'); // Join the sorted array into a string
 }
 
@@ -271,16 +210,12 @@ function createTableFromInfo(filteredInfo, startIndex) {
     const lines = filteredInfo.split('\n');
 
     let table = '<table>';
-    //table += '<thead><tr><th>ID</th><th>URL</th><th>Name</th><th>Time</th><th>Date</th><th>Task</th></tr></thead>';
+  
     table += '<tbody>';
 
-
-    //console.log("page",startIndex)
     let newStartIndex = 0;
     let endIndex = newStartIndex + 5;
-    // if(startIndex != 0) {newStartIndex = startIndex + 4;}
-    // else if(startIndex > 2) { newStartIndex = 5 * startIndex;}
-
+  
     switch(startIndex) {
         case 0:
             newStartIndex = 0;
@@ -303,17 +238,13 @@ function createTableFromInfo(filteredInfo, startIndex) {
             endIndex = 25;
     }
     
-    
-    // console.log("start", newStartIndex)
-    // console.log("end",endIndex)
-    // console.log("")
     for (let i = newStartIndex; i < endIndex && i < lines.length; i++) {
         const line = lines[i];
         //console.log(line)
         const matches = line.match(/ID: (\d+), URL: (.+), Name: (.+), Time: (.+), Date: (.+), Task: (\d+)/);
         if (matches) {
             const [_, id, url, name, time, date, task] = matches;
-            table += `<tr><td>${id}</td><td>${url}</td><td>${name}</td><td>${time}</td><td>${date}</td><td>${task}</td></tr>`;
+            table += `<tr><td style="width:3%;">${id}</td><td>${url}</td><td style="width:15%;">${name}</td><td style="width:10%;">${time}</td><td style="width:18%;">${date}</td><td style="width:10%;">${task}</td></tr>`;
         }
     }
 
