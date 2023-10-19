@@ -36,7 +36,7 @@ Dentro do painel de administração, os administradores podem organizar as falha
 
 ## Tecnologias Utilizadas:
 
-- **Backend:** Spring Boot, Spring Security.
+- **Backend:** Spring Boot, Spring Security, JUnit e MockMVC para a realização dos testes.
   - Endpoints:
     - POST para registrar falha.
     - GET para listar todas as falhas.
