@@ -1,3 +1,4 @@
+
 # Inclusiwatcher
 
 O **Inclusiwatcher** é uma plataforma que permite aos usuários registrar falhas de acessibilidade de forma anônima. O objetivo é promover uma experiência inclusiva e melhorar continuamente a acessibilidade dentro da Zup e StackSpot por meio do feedback e da colaboração dos usuários.
@@ -50,9 +51,9 @@ Dentro do painel de administração, os administradores podem organizar as falha
 ## Equipe:
 
 Faz parte do grupo:
-- Fabio
-- Juliana
-- Thaís
+- Fabio Sousa ([Linkedin](https://www.linkedin.com/in/tiofaso/) / [Github](https://github.com/tiofaso))
+- Juliana Medeiros ([Linkedin](https://www.linkedin.com/in/julianameds94/) / [Github](https://github.com/jumedeiros94))
+- Thaís Breder ([Linkedin](https://www.linkedin.com/in/thaisbbreder/) / [Github](https://github.com/thaisbbreder))
 
 ## Contribuindo
 
