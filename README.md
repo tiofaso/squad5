@@ -9,7 +9,8 @@ O **Inclusiwatcher** é uma plataforma que permite aos usuários registrar falha
 
 Os usuários podem cadastrar detalhes de falhas de acessibilidade por meio de um formulário fácil de usar. A submissão é anônima para garantir a privacidade do usuário.
 
-![Tela de Cadastro de Falhas parte 1](https://github.com/tiofaso/squad5/assets/133882071/f43c5160-e48a-49b1-9d3a-c6d439932589)
+![Tela de Cadastro de Falhas parte 1](https://github.com/tiofaso/squad5/blob/feature/src/main/java/com/catalisa/squad5/front/img/telaFormulario.png?raw=true)
+
 
 
 ## Funcionalidades para Administradores:
