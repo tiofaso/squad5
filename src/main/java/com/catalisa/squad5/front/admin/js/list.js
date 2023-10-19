@@ -15,9 +15,10 @@ xhr.onreadystatechange = function() {
             const allIssues = JSON.parse(xhr.responseText); //Getting all JSON content
 
             //To-do begin
-            if(getType() == 0) {
+            if(getType() == 0 || getType() == null) {
                 issuesContent(allIssues,0,getPage());
-            }else {issuesContent(allIssues,0,1)}
+            }else if(getType() != 0) {issuesContent(allIssues,0,1)}
+           
             pagination(allIssues,0);
             //To-do end
             
@@ -229,13 +230,13 @@ function getIndex() {
 
 function getType() {
     const urlParams = new URLSearchParams(window.location.search);
-    const index = parseInt(urlParams.get('type')) || 0;
+    const index = parseInt(urlParams.get('type')) || null;
     return index;
 }
 
 function getPage() {
     const urlParams = new URLSearchParams(window.location.search);
-    const index = parseInt(urlParams.get('pg')) || 0;
+    const index = parseInt(urlParams.get('pg')) || null;
     return index;
 }
 
