@@ -1,3 +1,4 @@
+
 # Inclusiwatcher
 
 O **Inclusiwatcher** é uma plataforma que permite aos usuários registrar falhas de acessibilidade de forma anônima. O objetivo é promover uma experiência inclusiva e melhorar continuamente a acessibilidade dentro da Zup e StackSpot por meio do feedback e da colaboração dos usuários.
@@ -8,7 +9,8 @@ O **Inclusiwatcher** é uma plataforma que permite aos usuários registrar falha
 
 Os usuários podem cadastrar detalhes de falhas de acessibilidade por meio de um formulário fácil de usar. A submissão é anônima para garantir a privacidade do usuário.
 
-![Tela de Cadastro de Falhas parte 1](https://github.com/tiofaso/squad5/assets/133882071/f43c5160-e48a-49b1-9d3a-c6d439932589)
+![Tela de Cadastro de Falhas parte 1](https://github.com/tiofaso/squad5/blob/feature/src/main/java/com/catalisa/squad5/front/img/telaFormulario.png?raw=true)
+
 
 
 ## Funcionalidades para Administradores:
@@ -36,7 +38,7 @@ Dentro do painel de administração, os administradores podem organizar as falha
 
 ## Tecnologias Utilizadas:
 
-- **Backend:** Spring Boot, Spring Security, JWT.
+- **Backend:** Spring Boot, Spring Security, JUnit e MockMVC para a realização dos testes.
   - Endpoints:
     - POST para registrar falha.
     - GET para listar todas as falhas.
@@ -50,9 +52,9 @@ Dentro do painel de administração, os administradores podem organizar as falha
 ## Equipe:
 
 Faz parte do grupo:
-- Fabio
-- Juliana
-- Thaís
+- Fabio Sousa ([Linkedin](https://www.linkedin.com/in/tiofaso/) / [Github](https://github.com/tiofaso))
+- Juliana Medeiros ([Linkedin](https://www.linkedin.com/in/julianameds94/) / [Github](https://github.com/jumedeiros94))
+- Thaís Breder ([Linkedin](https://www.linkedin.com/in/thaisbbreder/) / [Github](https://github.com/thaisbbreder))
 
 ## Contribuindo
 
